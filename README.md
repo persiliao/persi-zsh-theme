@@ -1,12 +1,14 @@
 # Persi Zsh Theme
 
-# Install 
+## Require
+
+- zsh
+- oh-my-zsh
+
+## Install 
 
 ```bash
-$ cd $ZSH_CUSTOM/themes
 $ git clone https://github.com/persiliao/persi-zsh-theme.git
-$ cp -R persi-zsh-theme/* .
-$ vim ~/.zshrc
-$ ZSH_THEME='persi'
-$ source ~/.zshrc
+$ cd persi-zsh-theme
+$ ./deploy.zsh
 ```
