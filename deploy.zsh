@@ -16,7 +16,7 @@ fi
 
 ZSH_CUSTOM_THEME="${ZSH_CUSTOM}/themes"
 
-cp -R "${workDirectory}/persi" "${ZSH_CUSTOM_THEME}/persi"
+cp -R "${workDirectory}/persi" "${ZSH_CUSTOM_THEME}"
 cp "${workDirectory}/persi.zsh-theme" "${ZSH_CUSTOM_THEME}/persi.zsh-theme"
 
 echo "persi.zsh-theme deploy success."
