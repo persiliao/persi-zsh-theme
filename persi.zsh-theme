@@ -14,11 +14,7 @@ persi_pwd() {
 }
 
 persi_user(){
-    if [[ -z $ITERM_PROFILE ]]; then
-        echo 'PersiLiao'
-    else
-        echo $ITERM_PROFILE
-    fi
+    echo $(hostname)
 }
 
 export CLICOLOR=1
