@@ -10,7 +10,11 @@ source ~/.zshrc
 
 ZSH_CUSTOM_THEME="${ZSH_CUSTOM}/themes"
 
-sed -i "" 's/\(ZSH_THEME\).*/\1="persi"/g' ~/.zshrc
+if [ `uname` == "Darwin" ]; then
+    sed -i "" 's/\(ZSH_THEME\).*/\1="persi"/g' ~/.zshrc
+else
+    sed -i 's/\(ZSH_THEME\).*/\1="persi"/g' ~/.zshrc
+fi
 
 ZSH_CUSTOM_THEME="${ZSH_CUSTOM}/themes"
 
