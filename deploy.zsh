@@ -6,8 +6,6 @@ workDirectory=$(dirname "$0")
 pushd ${workDirectory} > /dev/null
 workDirectory=$(pwd)
 
-ZSH_THEME_LINE=$(cat ~/.zshrc | grep -n "ZSH_THEME" | awk -F ":" '{print $1}')
-
 source ~/.zshrc
 
 ZSH_CUSTOM_THEME="${ZSH_CUSTOM}/themes"
