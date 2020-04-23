@@ -59,8 +59,8 @@ alias extDevelopmentComplie="${PHP_DEVELOPMENT_WORK_DIR}/phpize && ./configure -
 # Hyperf
 alias hyperf="./bin/hyperf.php 2>/dev/null"
 alias hyperfStart="./bin/hyperf.php start 2>/dev/null"
-alias hyperfStop="lsof -i:9501|tail -n 1|awk '{print \$2}'|xargs kill -9 2>/dev/null"
-alias hyperfRestart="lsof -i:9501|tail -n 1|awk '{print \$2}'|xargs kill -9 && ./bin/hyperf.php start 2>/dev/null"
+alias hyperfStop="lsof -i:9501|tail -n 1|awk '{print \$2}'|xargs kill -15 2>/dev/null"
+alias hyperfRestart="lsof -i:9501|tail -n 1|awk '{print \$2}'|xargs kill -15 && ./bin/hyperf.php start 2>/dev/null"
 alias hyperfOverrideProxy="./vendor/bin/init-proxy.sh 2>/dev/null"
 alias hyperfDescribeRoutes="./bin/hyperf.php describe:routes 2>/dev/null"
 alias hyperfProcessInfo="lsof -i:9501"

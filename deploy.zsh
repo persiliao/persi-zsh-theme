@@ -8,9 +8,7 @@ workDirectory=$(pwd)
 
 source ~/.zshrc
 
-ZSH_CUSTOM_THEME="${ZSH_CUSTOM}/themes"
-
-if [ `uname` == "Darwin" ]; then
+if [ `/usr/bin/uname` = "Darwin" ]; then
     sed -i "" 's/\(ZSH_THEME\).*/\1="persi"/g' ~/.zshrc
 else
     sed -i 's/\(ZSH_THEME\).*/\1="persi"/g' ~/.zshrc
