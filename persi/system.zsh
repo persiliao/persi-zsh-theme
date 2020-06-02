@@ -22,5 +22,5 @@ export HOMEBREW_BOTTLE_DOMAIN="https://mirrors.tuna.tsinghua.edu.cn/homebrew-bot
 
 # Golang
 export GOROOT="/usr/local/opt/go/libexec"
-export GOPATH="/Volumes/Documents/WorkSpace/Golang"
+export GOPATH="~/WorkSpace/Golang"
 

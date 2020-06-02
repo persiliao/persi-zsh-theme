@@ -40,9 +40,9 @@ alias corell="ll /cores"
 alias mailtruncate="truncate -s 0 /var/mail/${USER}"
 
 # WorkerSpace
-PersiLiaoWorkerDirectory="/Volumes/Documents/WorkSpace/Wepartner/OppoGlobalDesignActivity"
+PersiLiaoWorkerDirectory="~/WorkSpace/Wepartner/OppoGlobalDesignActivity"
 alias cdWorkerDirectory="cd ${PersiLiaoWorkerDirectory}"
-alias cdWorkspace="cd /Volumes/Documents/WorkSpace"
+alias cdWorkspace="cd ~/WorkSpace"
 # Magento2
 alias mgto2CodeSniffer="phpcs --standard=/Users/persi/WorkSpace/MagentoCode/vendor/magento-ecg/coding-standard/EcgM2 "
 alias mgto2ModuleUpdateDeploy='bin/magento setup:upgrade
@@ -51,7 +51,7 @@ bin/magento setup:static-content:deploy -f
 bin/magento cache:clean'
 
 # PHP
-PHP_DEVELOPMENT_WORK_DIR="/Volumes/Documents/WorkSpace/Php/php-7.4.3"
+PHP_DEVELOPMENT_WORK_DIR="~/WorkSpace/Php/php-7.4.3"
 alias phpdev="${PHP_DEVELOPMENT_WORK_DIR}/bin/php"
 alias cdphpdev="cd ${PHP_DEVELOPMENT_WORK_DIR}"
 alias extDevelopmentComplie="${PHP_DEVELOPMENT_WORK_DIR}/phpize && ./configure --with-php-config=${PHP_DEVELOPMENT_WORK_DIR}/php-config && make -j4 && make install"
