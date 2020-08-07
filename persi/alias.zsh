@@ -39,17 +39,6 @@ alias corell="ll /cores"
 # Mail
 alias mailtruncate="truncate -s 0 /var/mail/${USER}"
 
-# WorkerSpace
-PersiLiaoWorkerDirectory="~/WorkSpace/Wepartner/OppoGlobalDesignActivity"
-alias cdWorkerDirectory="cd ${PersiLiaoWorkerDirectory}"
-alias cdWorkspace="cd ~/WorkSpace"
-# Magento2
-alias mgto2CodeSniffer="phpcs --standard=/Users/persi/WorkSpace/MagentoCode/vendor/magento-ecg/coding-standard/EcgM2 "
-alias mgto2ModuleUpdateDeploy='bin/magento setup:upgrade
-bin/magento setup:di:compile
-bin/magento setup:static-content:deploy -f
-bin/magento cache:clean'
-
 # PHP
 PHP_DEVELOPMENT_WORK_DIR="~/WorkSpace/Php/php-7.4.3"
 alias phpdev="${PHP_DEVELOPMENT_WORK_DIR}/bin/php"
@@ -66,6 +55,7 @@ alias hyperfOverrideProxyRestart="./vendor/bin/init-proxy.sh 2>/dev/null && lsof
 alias hyperfDescribeRoutes="./bin/hyperf.php describe:routes 2>/dev/null"
 alias hyperfProcessInfo="lsof -i:9501"
 alias hyperfMacStopAll="ps -ef|grep -v grep|grep hyperf.php|awk '{print \$2}'|xargs kill -9 2>/dev/null"
+
 # Hyperf Generator
 
 alias hyperfGenCommand="./bin/hyperf.php gen:command"
@@ -97,11 +87,5 @@ alias macOsAppInstallSourceAll="sudo spctl --master-disable"
 
 # Android
 alias androidReboot="adb reboot"
-alias androidUninstallWeChatNew="adb shell pm uninstall -k com.tencent.mm"
-alias androidInstallWeChat667="adb install /Users/persi/Downloads/Android/Wechat/WeChat667.apk"
 alias androidActivityTop="adb shell dumpsys activity top |head -n 5"
-alias androidWeChatStart="adb shell am start com.tencent.mm/com.tencent.mm.ui.LauncherUI"
-alias androidWeChatStop="adb shell am force-stop com.tencent.mm"
-alias androidXposedMarketStart="adb shell am start com.marketing.wechat.persiliao.wechatmarketing/com.marketing.wechat.persiliao.wechatmarketing.MainActivity"
-alias androidXposedMarketStop="adb shell am force-stop com.marketing.wechat.persiliao.wechatmarketing"
 
