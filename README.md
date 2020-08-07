@@ -14,4 +14,4 @@ $ ./deploy.zsh
 ```
 
 ## Preview
-![image](./blob/master/screenshot.jpg)
+![image](/blob/master/screenshot.jpg)
