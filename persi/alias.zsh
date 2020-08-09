@@ -12,9 +12,7 @@ alias -s zip='unzip'
 alias -s bz2='tar -xjvf'
 
 alias week="php -r \"echo date('W') . PHP_EOL;\""
-alias ipshow="ifconfig en0 |grep inet"
 
-alias makeRandomPasswd="md5 -s $(date "+%Y%m%d%H:%M:%S")"
 # Zsh
 alias zshReloadConfig="source ~/.zshrc"
 alias zshClearHistory='echo "" > ~/.zsh_history & exec $SHELL -l'
@@ -72,6 +70,7 @@ alias dockerRemoveAll='docker rm $(docker ps -a -q)'
 
 # Mac
 alias macOsAppInstallSourceAll="sudo spctl --master-disable"
+alias ipshow="ifconfig en0 |grep inet"
 
 # Android
 alias androidReboot="adb reboot"
