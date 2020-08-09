@@ -15,12 +15,8 @@ umask 002
 export LANG=en_US.UTF-8
 
 # Brew 
-## 关闭brew每次执行命令时的自动更新
+## Turn off automatic updates every time Brew executes a command
 export HOMEBREW_NO_AUTO_UPDATE=true
-## 清华镜像源
+## Tsinghua mirror source
 export HOMEBREW_BOTTLE_DOMAIN="https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles"
-
-# Golang
-export GOROOT="/usr/local/opt/go/libexec"
-export GOPATH="~/WorkSpace/Golang"
 

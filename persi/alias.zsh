@@ -12,7 +12,7 @@ alias -s zip='unzip'
 alias -s bz2='tar -xjvf'
 
 alias week="php -r \"echo date('W') . PHP_EOL;\""
-alias ipshow="ifconfig en0"
+alias ipshow="ifconfig en0 |grep inet"
 
 alias makeRandomPasswd="md5 -s $(date "+%Y%m%d%H:%M:%S")"
 # Zsh
@@ -26,11 +26,12 @@ alias pg="pstree|grep -v grep |grep -i "
 alias rm="rm -ri"
 
 # Git
+alias gacm="git add . && git commit -m update"
 alias gac="git add . && git commit -m "
 alias gacp="git add . && git commit -m "update" && git push"
 
 # App compile
-alias makeinstall="make -j8 && make install"
+alias makeinstall="make -j 8 && make install"
 
 # Core dump
 alias coreclear="rm -rf /cores/core.*"
@@ -38,12 +39,6 @@ alias corell="ll /cores"
 
 # Mail
 alias mailtruncate="truncate -s 0 /var/mail/${USER}"
-
-# PHP
-PHP_DEVELOPMENT_WORK_DIR="~/WorkSpace/Php/php-7.4.3"
-alias phpdev="${PHP_DEVELOPMENT_WORK_DIR}/bin/php"
-alias cdphpdev="cd ${PHP_DEVELOPMENT_WORK_DIR}"
-alias extDevelopmentComplie="${PHP_DEVELOPMENT_WORK_DIR}/phpize && ./configure --with-php-config=${PHP_DEVELOPMENT_WORK_DIR}/php-config && make -j4 && make install"
 
 # Hyperf
 alias hyperf="./bin/hyperf.php 2>/dev/null"
@@ -57,7 +52,6 @@ alias hyperfProcessInfo="lsof -i:9501"
 alias hyperfMacStopAll="ps -ef|grep -v grep|grep hyperf.php|awk '{print \$2}'|xargs kill -9 2>/dev/null"
 
 # Hyperf Generator
-
 alias hyperfGenCommand="./bin/hyperf.php gen:command"
 alias hyperfGenController="./bin/hyperf.php gen:controller"
 alias hyperfGenListener="./bin/hyperf.php gen:listener"
@@ -75,12 +69,6 @@ alias hyperfVendorPublish="./bin/hyperf.php vendor:publish"
 # Docker
 alias dockerStopAll='docker stop $(docker ps -a -q)'
 alias dockerRemoveAll='docker rm $(docker ps -a -q)'
-
-# Andorid
-alias classyShark="java -jar /Users/persi/Downloads/Android/JavaDecompiler/ClassyShark.jar"
-
-# OpenCart
-alias ocCleanCached="rm -rf /Documents/WorkSpace/OpenCartStorage/cache"
 
 # Mac
 alias macOsAppInstallSourceAll="sudo spctl --master-disable"
