@@ -26,7 +26,7 @@ alias rm="rm -ri"
 # Git
 alias gacm="git add . && git commit -m update"
 alias gac="git add . && git commit -m "
-alias gacp="git add . && git commit -m "update" && git push"
+alias gacp="git add . && git commit -m "update" && git pull && git push"
 
 # App compile
 alias makeinstall="make -j 8 && make install"
