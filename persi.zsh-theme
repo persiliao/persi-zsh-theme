@@ -16,9 +16,9 @@ persi_pwd() {
 persi_user(){
     PERSI_USER=${USER}
     if [[ PERSI_USER == 'root' ]]; then
-        echo "%{$fg[red]%}# %{$fg[red]%}"
+        echo "%{$fg[red]%} # %{$fg[red]%}"
     else
-        echo "%{$fg[green]%}$ %{$fg[green]%}"
+        echo "%{$fg[green]%} $ %{$fg[green]%}"
     fi    
 }
 
@@ -35,9 +35,9 @@ PROMPT='%{$fg[magenta]%}$(persi_hostname)%{$fg[blue]%}${ret_status}%{$fg[FF5765]
 
 ZSH_THEME_GIT_PROMPT_PREFIX=" %{$fg[green]%}➲ %{$fg[magenta]%}"
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_DIRTY=" "💥" "
+ZSH_THEME_GIT_PROMPT_DIRTY=" "💥
 ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$fg[green]%}?"
-ZSH_THEME_GIT_PROMPT_CLEAN=" "💫" "
+ZSH_THEME_GIT_PROMPT_CLEAN=" "💫
 
 for config_file ($ZSH_CUSTOM/themes/persi/*.zsh); do
     if [ -f "${config_file}" ]; then
