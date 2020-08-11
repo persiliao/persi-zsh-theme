@@ -1,6 +1,6 @@
 persi_dir_writable() {
     if [[ ! -w "$PWD" ]]; then
-        echo " "🔐" "
+        echo " "🔐
     fi
 }
 persi_pwd() {
