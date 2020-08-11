@@ -1,24 +1,24 @@
 # Persi Zsh Theme
 
-[简体中文](/README_zh.md "简体中文")
+[English](/README.md "English")
 
-## Require
+## 依赖
 
 - zsh
 - [oh-my-zsh](https://github.com/ohmyzsh/ohmyzsh "oh-my-zsh")
 
-## Install 
+## 安装 
 
 ```sh
 $ git clone https://github.com/persiliao/persi-zsh-theme.git
 $ cd persi-zsh-theme
-# Deploy to oh-my-zsh
+# 部署到 oh-my-zsh
 $ ./deploy.zsh
 $ source ~/.zshrc
 ```
 
-## Preview
-![Preview](/screenshot.jpg)
+## 效果预览
+![效果预览](/screenshot.jpg)
 
 ## LICENSE
 
