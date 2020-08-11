@@ -1,6 +1,6 @@
 # Persi Zsh Theme
 
-[English](/README.md "English")
+[README](/README.md "README") | [中文文档](/README_zh.md "中文文档")
 
 ## 依赖
 
@@ -20,6 +20,6 @@ $ source ~/.zshrc
 ## 效果预览
 ![效果预览](/screenshot.jpg)
 
-## LICENSE
+## License
 
-MIT
+MIT License
