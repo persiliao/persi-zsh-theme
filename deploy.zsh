@@ -1,13 +1,16 @@
 #!/bin/zsh
 #
-# Deploy Zsh Custom
+# Deploy persi zsh custom theme
 
 workDirectory=$(dirname "$0")
+# shellcheck disable=SC2164
 pushd ${workDirectory} > /dev/null
 workDirectory=$(pwd)
 
+# shellcheck disable=SC1090
 source ~/.zshrc
 
+# shellcheck disable=SC2046
 if [ `/usr/bin/uname` = "Darwin" ]; then
     sed -i "" 's/\(ZSH_THEME\).*/\1="persi"/g' ~/.zshrc
 else
