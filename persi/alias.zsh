@@ -76,3 +76,10 @@ alias ipshow="ifconfig en0 |grep inet"
 alias androidReboot="adb reboot"
 alias androidActivityTop="adb shell dumpsys activity top |head -n 5"
 
+# PHP
+
+PHP_FPM_LOG="/usr/local/php/var/log/php-fpm.log"
+alias phpWatchLog="tail -n 100 -F ${PHP_FPM_LOG}"
+alias phpCleanLog="tail -n 100 -F ${PHP_FPM_LOG}"
+alias phpEditLog="vim ${PHP_FPM_LOG}"
+
