@@ -16,8 +16,8 @@ alias week="php -r \"echo date('W') . PHP_EOL;\""
 # Zsh
 alias zshReloadConfig="source ~/.zshrc"
 alias zshClearHistory='echo "" > ~/.zsh_history & exec $SHELL -l'
-alias zshEditConfig="sublime ~/.zshrc"
-alias ohmyzshEdit="sublime ~/.oh-my-zsh"
+alias zshEditConfig="vim ~/.zshrc"
+alias ohmyzshEdit="vim ~/.oh-my-zsh"
 alias ll="ls -alhF"
 alias lg="ls -alhF|grep -v grep |grep -i "
 alias pg="pstree|grep -v grep |grep -i "
@@ -76,10 +76,18 @@ alias ipshow="ifconfig en0 |grep inet"
 alias androidReboot="adb reboot"
 alias androidActivityTop="adb shell dumpsys activity top |head -n 5"
 
-# PHP
-
-PHP_FPM_LOG="/usr/local/php/var/log/php-fpm.log"
-alias phpWatchLog="tail -n 100 -F ${PHP_FPM_LOG}"
-alias phpCleanLog="tail -n 100 -F ${PHP_FPM_LOG}"
-alias phpEditLog="vim ${PHP_FPM_LOG}"
+# Log
+local PHP_FPM_ERROR_LOG="/usr/local/php/var/log/php-fpm.log"
+alias phpWatchLog="tail -n 100 -F ${PHP_FPM_ERROR_LOG}"
+alias phpCleanLog="tail -n 100 -F ${PHP_FPM_ERROR_LOG}"
+alias phpEditLog="vim ${PHP_FPM_ERROR_LOG}"
+local REDIS_LOG="/usr/local/var/log/redis.log"
+alias redisWatchLog="sudo tail -n 100 -F ${REDIS_LOG}"
+alias redisCleanLog="sudo truncate -s 0 ${REDIS_LOG}"
+local NGINX_ERROR_LOG="/usr/local/var/log/nginx_error.log"
+alias nginxWatchLog="sudo tail -n 100 -F ${NGINX_ERROR_LOG}"
+alias nginxCleanLog="sudo truncate -s 0 ${NGINX_ERROR_LOG}"
+local MYSQL_ERROR_LOG="/Users/persi/Documents/Log/mysql/mysql.error.log"
+alias mysqlWatchLog="sudo tail -n 100 -F ${MYSQL_ERROR_LOG}"
+alias mysqlCleanLog="sudo truncate -s 0 ${MYSQL_ERROR_LOG}"
 
