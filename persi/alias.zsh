@@ -77,7 +77,7 @@ alias androidReboot="adb reboot"
 alias androidActivityTop="adb shell dumpsys activity top |head -n 5"
 
 # Log
-local PHP_FPM_ERROR_LOG="/usr/local/php/var/log/php-fpm.log"
+local PHP_FPM_ERROR_LOG="/usr/local/var/log/php-fpm.log"
 alias phpWatchLog="tail -n 100 -F ${PHP_FPM_ERROR_LOG}"
 alias phpCleanLog="tail -n 100 -F ${PHP_FPM_ERROR_LOG}"
 alias phpEditLog="vim ${PHP_FPM_ERROR_LOG}"
@@ -87,7 +87,7 @@ alias redisCleanLog="sudo truncate -s 0 ${REDIS_LOG}"
 local NGINX_ERROR_LOG="/usr/local/var/log/nginx_error.log"
 alias nginxWatchLog="sudo tail -n 100 -F ${NGINX_ERROR_LOG}"
 alias nginxCleanLog="sudo truncate -s 0 ${NGINX_ERROR_LOG}"
-local MYSQL_ERROR_LOG="/Users/persi/Documents/Log/mysql/mysql.error.log"
+local MYSQL_ERROR_LOG="/usr/local/var/log/mysql_error.log"
 alias mysqlWatchLog="sudo tail -n 100 -F ${MYSQL_ERROR_LOG}"
 alias mysqlCleanLog="sudo truncate -s 0 ${MYSQL_ERROR_LOG}"
 
