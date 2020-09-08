@@ -78,9 +78,9 @@ alias androidActivityTop="adb shell dumpsys activity top |head -n 5"
 
 # Log
 local PHP_FPM_ERROR_LOG="/usr/local/var/log/php-fpm.log"
-alias phpWatchLog="tail -n 100 -F ${PHP_FPM_ERROR_LOG}"
+alias phpWatchLog="sudo tail -n 100 -F ${PHP_FPM_ERROR_LOG}"
 alias phpCleanLog="sudo truncate -s 0 ${PHP_FPM_ERROR_LOG}"
-alias phpEditLog="vim ${PHP_FPM_ERROR_LOG}"
+alias phpEditLog="sudo vim ${PHP_FPM_ERROR_LOG}"
 local REDIS_LOG="/usr/local/var/log/redis.log"
 alias redisWatchLog="sudo tail -n 100 -F ${REDIS_LOG}"
 alias redisCleanLog="sudo truncate -s 0 ${REDIS_LOG}"
