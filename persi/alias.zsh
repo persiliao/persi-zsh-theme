@@ -15,13 +15,14 @@ alias week="php -r \"echo date('W') . PHP_EOL;\""
 
 # Zsh
 alias zshReloadConfig="source ~/.zshrc"
-alias zshClearHistory='echo "" > ~/.zsh_history & exec $SHELL -l'
+alias zshClearHistory="truncate -s 0 ~/.zsh_history"
 alias zshEditConfig="vim ~/.zshrc"
 alias ohmyzshEdit="vim ~/.oh-my-zsh"
 alias ll="ls -alhF"
-alias lg="ls -alhF|grep -v grep |grep -i "
-alias pg="pstree|grep -v grep |grep -i "
+alias lg="ls -alhF|grep -v grep |grep -i"
+alias pg="pstree|grep -v grep |grep -i"
 alias rm="rm -ri"
+alias truncate="truncate -s 0"
 
 # Git
 alias gacm="git add . && git commit -m update"
