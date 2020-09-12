@@ -15,7 +15,7 @@
 $ git clone https://github.com/persiliao/persi-zsh-theme.git
 $ cd persi-zsh-theme
 # 部署到 oh-my-zsh
-$ ./deploy.zsh
+$ ./install_persi.zsh
 $ source ~/.zshrc
 ```
 
