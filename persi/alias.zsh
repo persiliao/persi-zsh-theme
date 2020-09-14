@@ -32,6 +32,13 @@ alias gacp="git add . && git commit -m "update" && git pull && git push"
 # App compile
 alias makeinstall="make -j 8 && make install"
 
+# Clean
+if [ `/usr/bin/uname` = "Darwin" ]; then
+    alias deleteAllSpace="sed -i \"\" '/^\s*$/d'"
+else
+    alias deleteAllSpace="sed -i '/^\s*$/d'"
+fi
+
 # Core dump
 alias coreclear="rm -rf /cores/core.*"
 alias corell="ll /cores"
