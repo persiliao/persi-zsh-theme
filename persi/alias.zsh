@@ -22,7 +22,7 @@ alias ll="ls -alhF"
 alias lg="ls -alhF|grep -v grep |grep -i"
 alias pg="pstree|grep -v grep |grep -i"
 alias rm="rm -ri"
-alias truncate="truncate -s 0"
+alias truncates="truncate -s 0"
 
 # Git
 alias gacm="git add . && git commit -m update"
