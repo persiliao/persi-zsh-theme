@@ -10,14 +10,9 @@ alias -s gz='tar -xzvf'
 alias -s tgz='tar -xzvf'
 alias -s zip='unzip'
 alias -s bz2='tar -xjvf'
-
-alias week="php -r \"echo date('W') . PHP_EOL;\""
-
 # Zsh
 alias zshReloadConfig="source ~/.zshrc"
 alias zshClearHistory="truncate -s 0 ~/.zsh_history"
-alias zshEditConfig="vim ~/.zshrc"
-alias ohmyzshEdit="vim ~/.oh-my-zsh"
 alias ll="ls -alhF"
 alias lg="ls -alhF|grep -v grep |grep -i"
 alias pg="pstree|grep -v grep |grep -i"
