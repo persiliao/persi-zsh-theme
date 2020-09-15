@@ -12,9 +12,9 @@ source ~/.zshrc
 ZSH_CUSTOM_THEME="${ZSH_CUSTOM}/themes"
 
 _useRecommendedPlugin(){
-    read -q "UsedRecommended?Whether to use the recommended plug-in (zsh_reload wd git gitignore git-flow npm node brew golang wp-cli composer yarn ) [y/n]? "
+    read -q "UsedRecommended?Whether to use the recommended plug-in (zsh_reload wd git gitignore git-flow docker npm node golang wp-cli composer yarn ) [y/n]? "
     if [[ $UsedRecommended == 'y' ]]; then
-        RecommendedPlugin="zsh_reload wd git gitignore git-flow npm node brew golang wp-cli composer yarn "
+        RecommendedPlugin="zsh_reload wd git gitignore git-flow docker npm node golang wp-cli composer yarn "
         # shellcheck disable=SC2046
         if [ `/usr/bin/uname` = "Darwin" ]; then
             sed -i "" "s/\(^plugins=(\)\s*/\1${RecommendedPlugin}/" ~/.zshrc
