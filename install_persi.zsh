@@ -12,6 +12,7 @@ source ~/.zshrc
 ZSH_CUSTOM_THEME="${ZSH_CUSTOM}/themes"
 
 _useRecommendedPlugin(){
+    echo
     read -q "UsedRecommended?Whether to use the recommended plug-in (zsh_reload wd git gitignore git-flow docker npm node golang wp-cli composer yarn ) [y/n]? "
     if [[ $UsedRecommended == 'y' ]]; then
         RecommendedPlugin="zsh_reload wd git gitignore git-flow docker npm node golang wp-cli composer yarn "
@@ -26,6 +27,7 @@ _useRecommendedPlugin(){
 }
 
 _useConfigAndAlias(){
+    echo 
     read -q "UseConfigAndAlias?Whether to use the recommended config and alias [y/n]? "
     if [[ $UseConfigAndAlias == 'y' ]]; then
         cp -R "${workDirectory}/persi" "${ZSH_CUSTOM_THEME}"
@@ -43,7 +45,6 @@ else
 fi
 
 _useConfigAndAlias
-
 
 _useRecommendedPlugin
 
