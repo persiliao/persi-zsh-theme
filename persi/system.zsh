@@ -9,14 +9,8 @@ unsetopt correct_all
 
 # ulimit -c unlimited
 ulimit -c 0
-umask 002
+umask 022
 
 # You may need to manually set your language environment
 export LANG=en_US.UTF-8
-
-# Brew 
-## Turn off automatic updates every time Brew executes a command
-export HOMEBREW_NO_AUTO_UPDATE=true
-## Tsinghua mirror source
-export HOMEBREW_BOTTLE_DOMAIN="https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles"
 
