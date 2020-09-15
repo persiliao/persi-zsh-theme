@@ -38,7 +38,7 @@ ZSH_THEME_GIT_PROMPT_DIRTY=" "💥
 ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$fg[green]%}?%{$reset_color%}"
 ZSH_THEME_GIT_PROMPT_CLEAN=" "💫
 
-RPROMPT='%{$fg[magenta]%}$(persi_hostname)'
+RPROMPT='%{$fg[magenta]%}$(persi_hostname) %{$reset_color%}'
 
 for config_file ($ZSH_CUSTOM/themes/persi/*.zsh); do
     if [ -f "${config_file}" ]; then
