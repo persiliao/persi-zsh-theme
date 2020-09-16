@@ -20,9 +20,10 @@ alias rm="rm -ri"
 alias truncates="truncate -s 0"
 
 # Git
-alias gacm="git add . && git commit -m update"
-alias gac="git add . && git commit -m "
-alias gacp="git add . && git commit -m "update" && git pull && git push"
+alias gacmsg='git add . && git commit -m'
+alias gacp='git add . && git commit -m "update" && git pull origin $(git_main_branch) && git push origin $(git_main_branch)'
+alias gmm='git merge master'
+alias gmd='git merge develop'
 
 # App compile
 alias makeinstall="make -j 8 && make install"
