@@ -24,6 +24,7 @@ alias gacmsg='git add . && git commit -m'
 alias gacp='git add . && git commit -m "update" && git pull origin $(git_main_branch) && git push origin $(git_main_branch)'
 alias gmm='git merge master'
 alias gmd='git merge develop'
+alias ggpushmaster='git push origin $(git_main_branch)'
 
 # App compile
 alias makeinstall="make -j 8 && make install"
