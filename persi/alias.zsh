@@ -11,23 +11,23 @@ alias -s tgz='tar -xzvf'
 alias -s zip='unzip'
 alias -s bz2='tar -xjvf'
 # Zsh
-alias zshReloadConfig="source ~/.zshrc"
-alias zshClearHistory="truncate -s 0 ~/.zsh_history"
+alias tczero="truncate -s 0"
+alias zchistory="truncate -s 0 ~/.zsh_history"
 alias ll="ls -alhF"
 alias lg="ls -alhF|grep -v grep |grep -i"
 alias pg="pstree|grep -v grep |grep -i"
 alias rm="rm -ri"
-alias truncates="truncate -s 0"
+# Generate rand password
+alias grand="openssl rand -hex"
+alias grand16="openssl rand -hex 16"
+alias grand32="openssl rand -hex 32"
 
 # Git
 alias gacmsg='git add . && git commit -m'
-alias gacp='git add . && git commit -m "update" && git pull origin $(git_main_branch) && git push origin $(git_main_branch)'
+alias gacp='git add . && git commit -m "update" && git pull origin $(git_current_branch) && git push origin $(git_current_branch)'
 alias gmm='git merge master'
 alias gmd='git merge develop'
 alias ggpushmaster='git push origin $(git_main_branch)'
-
-# App compile
-alias makeinstall="make -j 8 && make install"
 
 # Clean
 if [ `/usr/bin/uname` = "Darwin" ]; then
@@ -41,7 +41,7 @@ alias coreclear="rm -rf /cores/core.*"
 alias corell="ll /cores"
 
 # Mail
-alias mailtruncate="truncate -s 0 /var/mail/${USER}"
+alias mailtcz="truncate -s 0 /var/mail/${USER}"
 
 # Hyperf
 alias hyperf="./bin/hyperf.php 2>/dev/null"
