@@ -4,6 +4,12 @@
 
 ---
 
+## 特性 [可选]
+
+- 添加插件 zsh_reload wd git gitignore git-flow git-flow-avh docker npm node golang wp-cli composer yarn
+- Homebrew 使用清华镜像源
+- 一些常用的Alias
+
 ## 依赖
 
 - zsh
@@ -20,7 +26,7 @@ $ source ~/.zshrc
 ```
 
 ## 效果预览
-![效果预览](/screenshot.jpg)
+![效果预览](/screenshot.png)
 
 ## License
 
