@@ -7,10 +7,6 @@ setopt histignorespace
 unsetopt share_history
 unsetopt correct_all
 
-# ulimit -c unlimited
-ulimit -c 0
-umask 022
-
 # You may need to manually set your language environment
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
