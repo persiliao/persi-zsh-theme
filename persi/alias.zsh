@@ -28,6 +28,8 @@ alias gacp='git add . && git commit -m "update" && git pull origin $(git_current
 alias gmm='git merge master'
 alias gmd='git merge develop'
 alias ggpushmaster='git push origin $(git_main_branch)'
+alias gsui='git submodule update --init --recursive'
+alias gsurm='git submodule update --recursive --remote --merge'
 
 # Clean
 if [ `/usr/bin/uname` = "Darwin" ]; then
