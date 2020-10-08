@@ -32,7 +32,7 @@ export LS_COLORS='no=00:fi=00:di=01;32:ln=00;36:pi=40;33:so=01;35:do=01;35:bd=00
 local ret_status="%(:%{$fg[green]%}@%{$fg[red]%}:)"
 PROMPT='%{$fg[magenta]%}$(persi_hostname)%{$reset_color%}%{$fg[blue]%}${ret_status}%{$fg[FF5765]%}@%{$fg_bold[green]%}$(persi_pwd)$(persi_dir_writable)%{$reset_color%}$(git_prompt_info)%{$reset_color%}$(persi_user)%{$reset_color%}'
 
-GIT_STATUS_IGNORE_SUBMODULES="true"
+# GIT_STATUS_IGNORE_SUBMODULES="true"
 
 ZSH_THEME_GIT_PROMPT_PREFIX=" ⚡️ %{$fg[magenta]%}"
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
