@@ -46,6 +46,10 @@ alias corell="ll /cores"
 # Mail
 alias mailtcz="truncate -s 0 /var/mail/${USER}"
 
+# Composer
+alias cunodev="composer update --no-dev"
+alias cinodev="composer install --no-dev"
+
 # Hyperf
 alias hyperf="./bin/hyperf.php 2>/dev/null"
 alias hyperfStart="./bin/hyperf.php start 2>/dev/null"
