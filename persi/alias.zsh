@@ -31,6 +31,7 @@ alias ggpushmaster='git push origin $(git_main_branch)'
 alias gsa='git submodule add '
 alias gsui='git submodule update --init --recursive'
 alias gsurm='git submodule update --recursive --remote --merge'
+alias ggplsurm='git pull origin $(git_main_branch) && git submodule update --recursive --remote --merge'
 
 # Clean
 if [ `/usr/bin/uname` = "Darwin" ]; then
@@ -49,6 +50,7 @@ alias mailtcz="truncate -s 0 /var/mail/${USER}"
 # Composer
 alias cunodev="composer update --no-dev"
 alias cinodev="composer install --no-dev"
+alias crb='./bin/satis build ./satis.json ./build'
 
 # Hyperf
 alias hyperf="./bin/hyperf.php 2>/dev/null"
