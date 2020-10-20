@@ -28,6 +28,10 @@ $ source ~/.zshrc
 ## Preview
 ![Preview](/screenshot.png)
 
+## Support
+
+![Jetbrains](https://github.com/persiliao/static-resources/blob/master/jetbrains-logos/jetbrains-variant-4.svg)
+
 ## License
 
 MIT License
