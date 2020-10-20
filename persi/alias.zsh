@@ -40,7 +40,10 @@ else
     alias deleteAllSpace="sed -i '/^\s*$/d'"
 fi
 
-# Core dump
+# Python
+alias pipupgradeself='python3 -m pip install --upgrade pip'
+
+# Core dump for mac
 alias coreclear="rm -rf /cores/core.*"
 alias corell="ll /cores"
 
