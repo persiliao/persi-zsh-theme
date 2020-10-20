@@ -30,7 +30,7 @@ $ source ~/.zshrc
 
 ## License
 
-MIT License
+**MIT License**
 
 ## Support
 
