@@ -10,6 +10,9 @@ alias -s gz='tar -xzvf'
 alias -s tgz='tar -xzvf'
 alias -s zip='unzip'
 alias -s bz2='tar -xjvf'
+# required install unrar
+alias -s rar='rar x'
+
 # Zsh
 alias tczero="truncate -s 0"
 alias zchistory="truncate -s 0 ~/.zsh_history"
@@ -54,6 +57,9 @@ alias mailtcz="truncate -s 0 /var/mail/${USER}"
 alias cunodev="composer update --no-dev"
 alias cinodev="composer install --no-dev"
 alias crb='./bin/satis build ./satis.json ./build'
+
+# Wordpress
+alias ccpwp='composer create-project wpcodec/theme:dev-master'
 
 # Hyperf
 alias hyperf="./bin/hyperf.php 2>/dev/null"
