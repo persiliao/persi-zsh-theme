@@ -15,12 +15,11 @@
 - zsh
 - [oh-my-zsh](https://github.com/ohmyzsh/ohmyzsh "oh-my-zsh")
 
-## Install 
+## Installation 
 
 ```sh
 $ git clone https://github.com/persiliao/persi-zsh-theme
 $ cd persi-zsh-theme
-# Deploy to oh-my-zsh
 $ ./install_persi.zsh
 $ source ~/.zshrc
 ```
