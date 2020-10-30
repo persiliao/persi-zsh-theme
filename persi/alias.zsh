@@ -1,4 +1,4 @@
-# Alias 
+# Alias
 # Editor
 alias -s js=vim
 alias -s c=vim
@@ -37,6 +37,7 @@ alias gsurm='git submodule update --recursive --remote --merge'
 alias ggplsurm='git pull origin $(git_main_branch) && git submodule update --recursive --remote --merge'
 
 # Clean
+# shellcheck disable=SC2046
 if [ `/usr/bin/uname` = "Darwin" ]; then
     alias deleteAllSpace="sed -i \"\" '/^\s*$/d'"
 else
@@ -51,6 +52,7 @@ alias coreclear="rm -rf /cores/core.*"
 alias corell="ll /cores"
 
 # Mail
+# shellcheck disable=SC2139
 alias mailtcz="truncate -s 0 /var/mail/${USER}"
 
 # Composer
@@ -59,17 +61,21 @@ alias cinodev="composer install --no-dev"
 alias crb='./bin/satis build ./satis.json ./build'
 
 # Wordpress
-alias ccpwp='composer create-project --keep-vcs wpcodec/theme:dev-master'
+alias ccpwp='composer create-project --remove-vcs wpcodec/theme:dev-master'
 
 # Hyperf
 alias hyperf="./bin/hyperf.php 2>/dev/null"
 alias hyperfStart="./bin/hyperf.php start 2>/dev/null"
+# shellcheck disable=SC2142
 alias hyperfStop="lsof -i:9501|tail -n 1|awk '{print \$2}'|xargs kill -15 2>/dev/null"
+# shellcheck disable=SC2142
 alias hyperfRestart="lsof -i:9501|tail -n 1|awk '{print \$2}'|xargs kill -15 && ./bin/hyperf.php start 2>/dev/null"
 alias hyperfOverrideProxy="./vendor/bin/init-proxy.sh 2>/dev/null"
+# shellcheck disable=SC2142
 alias hyperfOverrideProxyRestart="./vendor/bin/init-proxy.sh 2>/dev/null && lsof -i:9501|tail -n 1|awk '{print \$2}'|xargs kill -15 && ./bin/hyperf.php start 2>/dev/null"
 alias hyperfDescribeRoutes="./bin/hyperf.php describe:routes 2>/dev/null"
 alias hyperfProcessInfo="lsof -i:9501"
+# shellcheck disable=SC2142
 alias hyperfMacStopAll="ps -ef|grep -v grep|grep hyperf.php|awk '{print \$2}'|xargs kill -9 2>/dev/null"
 
 # Hyperf Generator
@@ -106,11 +112,17 @@ if [ -e "/usr/local/php/var/log/php-fpm.log" ]; then
     PHP_FPM_ERROR_LOG="/usr/local/var/log/php-fpm.log"
 fi
 
+# shellcheck disable=SC2139
 alias phpWatchLog="sudo tail -n 100 -F ${PHP_FPM_ERROR_LOG}"
+# shellcheck disable=SC2139
 alias phpCleanLog="sudo truncate -s 0 ${PHP_FPM_ERROR_LOG}"
+# shellcheck disable=SC2139
 alias phpEditLog="sudo vim ${PHP_FPM_ERROR_LOG}"
+# shellcheck disable=SC2168
 local REDIS_LOG="/usr/local/var/log/redis.log"
+# shellcheck disable=SC2139
 alias redisWatchLog="sudo tail -n 100 -F ${REDIS_LOG}"
+# shellcheck disable=SC2139
 alias redisCleanLog="sudo truncate -s 0 ${REDIS_LOG}"
 
 if [ -e "/data/wwwlogs/error_nginx.log" ]; then
@@ -119,9 +131,14 @@ if [ -e "/data/wwwlogs/error_nginx.log" ]; then
     NGINX_ERROR_LOG="/usr/local/var/log/nginx_error.log"
 fi
 
+# shellcheck disable=SC2139
 alias nginxWatchLog="sudo tail -n 100 -F ${NGINX_ERROR_LOG}"
+# shellcheck disable=SC2139
 alias nginxCleanLog="sudo truncate -s 0 ${NGINX_ERROR_LOG}"
+# shellcheck disable=SC2168
 local MYSQL_ERROR_LOG="/usr/local/var/log/mysql_error.log"
+# shellcheck disable=SC2139
 alias mysqlWatchLog="sudo tail -n 100 -F ${MYSQL_ERROR_LOG}"
+# shellcheck disable=SC2139
 alias mysqlCleanLog="sudo truncate -s 0 ${MYSQL_ERROR_LOG}"
 
