@@ -61,7 +61,7 @@ alias cinodev="composer install --no-dev"
 alias crb='./bin/satis build ./satis.json ./build'
 
 # Wordpress
-alias ccpwp='composer create-project --remove-vcs wpcodec/theme:dev-master'
+alias ccpwp='composer create-project --remove-vcs wpcodec/theme-skeleton:dev-master'
 
 # Hyperf
 alias hyperf="./bin/hyperf.php 2>/dev/null"
