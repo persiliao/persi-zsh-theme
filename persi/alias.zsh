@@ -38,7 +38,7 @@ alias ggplsurm='git pull origin $(git_main_branch) && git submodule update --rec
 
 # Clean
 # shellcheck disable=SC2046
-if [ `/usr/bin/uname` = "Darwin" ]; then
+if [ `uname` = "Darwin" ]; then
     alias deleteAllSpace="sed -i \"\" '/^\s*$/d'"
 else
     alias deleteAllSpace="sed -i '/^\s*$/d'"
