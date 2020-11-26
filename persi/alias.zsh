@@ -26,6 +26,7 @@ alias grand16="openssl rand -hex 16"
 alias grand32="openssl rand -hex 32"
 
 # Git
+alias gct='git checkout test'
 alias gacmsg='git add . && git commit -m'
 alias gacp='git add . && git commit -m "update" && git pull origin $(git_current_branch) && git push origin $(git_current_branch)'
 alias gmm='git merge master'
