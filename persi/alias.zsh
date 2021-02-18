@@ -35,7 +35,8 @@ alias gsui='git submodule update --init --recursive'
 alias gsurm='git submodule update --recursive --remote --merge'
 alias ggplsurm='git pull origin $(git_main_branch) && git submodule update --recursive --remote --merge'
 alias gacmsg='git add . && git commit -m'
-alias gacp='git add . && git commit -m "update" && git pull origin $(git_current_branch) && git submodule update --recursive --remote --merge && git push origin $(git_current_branch)'
+alias gacsp='git add . && git commit -m "update" && git pull origin $(git_current_branch) && git submodule update --recursive --remote --merge && git push origin $(git_current_branch)'
+alias gacp='git add . && git commit -m "update" && git pull origin $(git_current_branch) && git push origin $(git_current_branch)'
 
 # Clean
 # shellcheck disable=SC2046
