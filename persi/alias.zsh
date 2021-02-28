@@ -26,6 +26,7 @@ alias grand16="openssl rand -hex 16"
 alias grand32="openssl rand -hex 32"
 
 # Git
+alias gtdall='git tag |xargs git tag -d'
 alias gct='git checkout test'
 alias gmm='git merge master'
 alias gmd='git merge develop'
