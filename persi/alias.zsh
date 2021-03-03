@@ -64,8 +64,11 @@ alias cunodev="composer update --no-dev"
 alias cinodev="composer install --no-dev"
 alias crb='./bin/satis build ./satis.json ./build'
 
-# Drone
-alias droneSign="drone sign --save `grv |grep -i origin|head -n 1|awk '{print $2}'|sed 's#^https://\([^/]*\)/##g'`"
+droneSignRepo(){
+    DroneRepoName=`git remote -v | grep -i origin | head -n 1 | awk '{print $2}' | sed 's#^https://\([^/]*\)/##g'`
+    drone sign --save $DroneRepoName $1
+    return 0
+}
 
 # Hyperf
 alias hyperf="./bin/hyperf.php 2>/dev/null"
