@@ -59,15 +59,13 @@ alias corell="ll /cores"
 alias mailtcz="truncate -s 0 /var/mail/${USER}"
 
 # Composer
+alias crnodev="composer require --no-dev"
 alias cunodev="composer update --no-dev"
 alias cinodev="composer install --no-dev"
 alias crb='./bin/satis build ./satis.json ./build'
 
 # Drone
 alias droneSign="drone sign --save `grv |grep -i origin|head -n 1|awk '{print $2}'|sed 's#^https://\([^/]*\)/##g'`"
-
-# Wordpress
-alias ccpwp='composer create-project --remove-vcs wpcodec/theme-skeleton:dev-master'
 
 # Hyperf
 alias hyperf="./bin/hyperf.php 2>/dev/null"
