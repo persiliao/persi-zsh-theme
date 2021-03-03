@@ -108,6 +108,10 @@ alias ipshow="ifconfig en0 |grep inet"
 alias androidReboot="adb reboot"
 alias androidActivityTop="adb shell dumpsys activity top |head -n 5"
 
+# Xdebug open cli listen
+alias xdebugOpen='export XDEBUG_TRIGGER=true'
+alias xdebugClose='unset XDEBUG_TRIGGER'
+
 # Log
 if [ -e "/usr/local/php/var/log/php-fpm.log" ]; then
     PHP_FPM_ERROR_LOG="/usr/local/php/var/log/php-fpm.log"
@@ -119,6 +123,8 @@ fi
 alias phpWatchLog="sudo tail -n 100 -F ${PHP_FPM_ERROR_LOG}"
 # shellcheck disable=SC2139
 alias phpCleanLog="sudo truncate -s 0 ${PHP_FPM_ERROR_LOG}"
+# shellcheck disable=SC2139
+alias phpWatchSlowLog="sudo tail -n 100 -F /usr/local/php/var/log/www.slog.log"
 # shellcheck disable=SC2139
 alias phpEditLog="sudo vim ${PHP_FPM_ERROR_LOG}"
 # shellcheck disable=SC2168
