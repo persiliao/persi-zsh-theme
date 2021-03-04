@@ -92,7 +92,7 @@ persi_drone_sign_repo(){
     else
         PERSI_DRONE_CONFIG=$1
     fi
-    read -q "PERSI_DRONE_SIGN?Whether to sign the current repository to ${PERSI_DRONE_CONFIG} [y/n] ?"
+    read -q "PERSI_DRONE_SIGN?Whether to sign the current repository to ${PERSI_DRONE_CONFIG} [y/n]: "
     if [ $PERSI_DRONE_SIGN = 'y' ]; then
         drone sign --save ${PERSI_GIT_REPO_NAME} ${PERSI_DRONE_CONFIG}
         if [ $? = 0 ]; then
