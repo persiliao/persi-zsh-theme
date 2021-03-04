@@ -16,8 +16,8 @@ persi_set_zsh_custom_dir(){
 }
 
 persi_get_repo_name(){
-    local PERSI_GIT_REPO_NAME=`git remote -v | grep -i origin | head -n 1 | awk '{print $2}' | sed 's#^https://\([^/\.]+\)/##g'`
-    if [ ! $PERSI_GIT_REPO_NAME ]; then
+    export PERSI_GIT_REPO_NAME=`git remote -v | grep -v grep |grep -i origin | head -n 1 | awk '{print $2}' | sed 's#^https://\([^/]*\)/\([^\.]*\)#\2#g'`
+    if [[ -z $PERSI_GIT_REPO_NAME ]]; then
         echo -e "${CLISTART}${CLIDRED}not a git repository (or any of the parent directories): .git${CLIEND}"
         exit 0
     fi
