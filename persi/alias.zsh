@@ -39,14 +39,6 @@ alias gacmsg='git add . && git commit -m'
 alias gacsp='git add . && git commit -m "update" && git pull origin $(git_current_branch) && git submodule update --recursive --remote --merge && git push origin $(git_current_branch)'
 alias gacp='git add . && git commit -m "update" && git pull origin $(git_current_branch) && git push origin $(git_current_branch)'
 
-# Clean
-# shellcheck disable=SC2046
-if [ `uname` = "Darwin" ]; then
-    alias deleteAllSpace="sed -i \"\" '/^\s*$/d'"
-else
-    alias deleteAllSpace="sed -i '/^\s*$/d'"
-fi
-
 # Python
 alias pipupgradeself='python3 -m pip install --upgrade pip'
 
@@ -64,11 +56,8 @@ alias cunodev="composer update --no-dev"
 alias cinodev="composer install --no-dev"
 alias crb='./bin/satis build ./satis.json ./build'
 
-droneSignRepo(){
-    DroneRepoName=`git remote -v | grep -i origin | head -n 1 | awk '{print $2}' | sed 's#^https://\([^/]*\)/##g'`
-    drone sign --save $DroneRepoName $1
-    return 0
-}
+# Drone
+alias droneSign='droneSignRepo'
 
 # Hyperf
 alias hyperf="./bin/hyperf.php 2>/dev/null"
@@ -104,6 +93,9 @@ alias hyperfVendorPublish="./bin/hyperf.php vendor:publish"
 alias dockerStopAll='docker stop $(docker ps -a -q)'
 alias dockerRemoveAll='docker rm $(docker ps -a -q)'
 
+# Drone
+alias dros='persi_drone_sign_repo'
+
 # Mac
 alias macOsAppInstallSourceAll="sudo spctl --master-disable"
 alias ipshow="ifconfig en0 |grep inet"
@@ -118,40 +110,40 @@ alias xdebugClose='unset XDEBUG_TRIGGER'
 
 # Log
 if [ -e "/usr/local/php/var/log/php-fpm.log" ]; then
-    PHP_FPM_ERROR_LOG="/usr/local/php/var/log/php-fpm.log"
+    PERSI_PHP_FPM_ERROR_LOG="/usr/local/php/var/log/php-fpm.log"
     else
-    PHP_FPM_ERROR_LOG="/usr/local/var/log/php-fpm.log"
+    PERSI_PHP_FPM_ERROR_LOG="/usr/local/var/log/php-fpm.log"
 fi
 
 # shellcheck disable=SC2139
-alias phpWatchLog="sudo tail -n 100 -F ${PHP_FPM_ERROR_LOG}"
+alias phpWatchLog="tail -n 100 -F ${PERSI_PHP_FPM_ERROR_LOG}"
 # shellcheck disable=SC2139
-alias phpCleanLog="sudo truncate -s 0 ${PHP_FPM_ERROR_LOG}"
+alias phpCleanLog="truncate -s 0 ${PERSI_PHP_FPM_ERROR_LOG}"
 # shellcheck disable=SC2139
-alias phpWatchSlowLog="sudo tail -n 100 -F /usr/local/php/var/log/www.slog.log"
+alias phpWatchSlowLog="tail -n 100 -F /usr/local/php/var/log/www.slog.log"
 # shellcheck disable=SC2139
-alias phpEditLog="sudo vim ${PHP_FPM_ERROR_LOG}"
+alias phpEditLog="vim ${PERSI_PHP_FPM_ERROR_LOG}"
 # shellcheck disable=SC2168
-local REDIS_LOG="/usr/local/var/log/redis.log"
+local PERSI_REDIS_LOG="/usr/local/var/log/redis.log"
 # shellcheck disable=SC2139
-alias redisWatchLog="sudo tail -n 100 -F ${REDIS_LOG}"
+alias redisWatchLog="tail -n 100 -F ${PERSI_REDIS_LOG}"
 # shellcheck disable=SC2139
-alias redisCleanLog="sudo truncate -s 0 ${REDIS_LOG}"
+alias redisCleanLog="truncate -s 0 ${PERSI_REDIS_LOG}"
 
 if [ -e "/data/wwwlogs/error_nginx.log" ]; then
-    NGINX_ERROR_LOG="/data/wwwlogs/error_nginx.log"
+    PERSI_NGINX_ERROR_LOG="/data/wwwlogs/error_nginx.log"
     else
-    NGINX_ERROR_LOG="/usr/local/var/log/nginx_error.log"
+    PERSI_NGINX_ERROR_LOG="/usr/local/var/log/nginx_error.log"
 fi
 
 # shellcheck disable=SC2139
-alias nginxWatchLog="sudo tail -n 100 -F ${NGINX_ERROR_LOG}"
+alias nginxWatchLog="tail -n 100 -F ${PERSI_NGINX_ERROR_LOG}"
 # shellcheck disable=SC2139
-alias nginxCleanLog="sudo truncate -s 0 ${NGINX_ERROR_LOG}"
+alias nginxCleanLog="truncate -s 0 ${PERSI_NGINX_ERROR_LOG}"
 # shellcheck disable=SC2168
 local MYSQL_ERROR_LOG="/usr/local/var/log/mysql_error.log"
 # shellcheck disable=SC2139
-alias mysqlWatchLog="sudo tail -n 100 -F ${MYSQL_ERROR_LOG}"
+alias mysqlWatchLog="tail -n 100 -F ${MYSQL_ERROR_LOG}"
 # shellcheck disable=SC2139
-alias mysqlCleanLog="sudo truncate -s 0 ${MYSQL_ERROR_LOG}"
+alias mysqlCleanLog="truncate -s 0 ${MYSQL_ERROR_LOG}"
 

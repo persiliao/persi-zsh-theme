@@ -2,36 +2,26 @@
 #
 # Deploy persi zsh custom theme
 
-workDirectory=$(dirname "$0")
+PERSI_THEME_WORK_DIRECTORY=$(dirname "$0")
 # shellcheck disable=SC2164
-pushd ${workDirectory} > /dev/null
-workDirectory=$(pwd)
+pushd ${PERSI_THEME_WORK_DIRECTORY} > /dev/null
+export PERSI_THEME_WORK_DIRECTORY=$(pwd)
 # shellcheck disable=SC1090
-source ~/.zshrc
 
-ZSH_CUSTOM_THEME="${ZSH_CUSTOM}/themes"
-
-_useConfigAndAlias(){
-    read -q "UseConfigAndAlias?Whether to use the recommended config and alias [y/n] ? "
-    if [[ $UseConfigAndAlias == 'y' ]]; then
-        cp -R "${workDirectory}/persi" "${ZSH_CUSTOM_THEME}"
-        echo -e "\n${CLISTART}${CLIDGREEN}🍺 cp config to ${ZSH_CUSTOM_THEME} ${CLIEND}"
-    else
-        echo -e "\n"
+for config_file ($PERSI_THEME_WORK_DIRECTORY/persi/*.zsh); do
+    if [ -f "${config_file}" ]; then
+        source $config_file
     fi
-}
+done
 
-cp "${workDirectory}/persi.zsh-theme" "${ZSH_CUSTOM_THEME}/persi.zsh-theme"
+persi_set_zsh_custom_dir
 
-# shellcheck disable=SC2046
-if [ `/usr/bin/uname` = "Darwin" ]; then
-    sed -i "" 's/\(ZSH_THEME\).*/\1="persi"/g' ~/.zshrc
-else
-    sed -i 's/\(ZSH_THEME\).*/\1="persi"/g' ~/.zshrc
+persi_install_command
+
+if [ $? = "0" ]; then
+    persi_install_zsh_theme
+
+    persi_reload_zsh
+
+    echo -e "${CLISTART}${CLIDGREEN}🍺 persi.zsh-theme command Installed successfully.${CLIEND}"
 fi
-
-_useConfigAndAlias
-
-source ~/.zshrc
-
-echo -e "${CLISTART}${CLIDGREEN}🍺 persi.zsh-theme command Installed successfully.${CLIEND}"

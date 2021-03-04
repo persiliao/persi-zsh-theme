@@ -1,0 +1,104 @@
+persi_check_sed_is_gnu(){
+    local IS_GNU=`sed --version | grep GNU | wc -l`
+    if [ $? = 0 -a $IS_GNU -gt 0 ]; then
+        export PERSI_SED_IS_GNU="1"
+    fi
+    export PERSI_SED_IS_GNU="1"
+}
+
+persi_reload_zsh(){
+    source ~/.zshrc
+}
+
+persi_set_zsh_custom_dir(){
+    persi_reload_zsh
+    export PERSI_ZSH_CUSTOM_THEME_DIR="${ZSH_CUSTOM}/themes"
+}
+
+persi_get_repo_name(){
+    local PERSI_GIT_REPO_NAME=`git remote -v | grep -i origin | head -n 1 | awk '{print $2}' | sed 's#^https://\([^/\.]+\)/##g'`
+    if [ ! $PERSI_GIT_REPO_NAME ]; then
+        echo -e "${CLISTART}${CLIDRED}not a git repository (or any of the parent directories): .git${CLIEND}"
+        exit 0
+    fi
+}
+
+persi_deploy_zsh_theme(){
+    # shellcheck disable=SC2046
+    persi_check_sed_is_gnu
+    if [ $PERSI_SED_IS_GNU = "1" ]; then
+        sed -i 's/\(ZSH_THEME\).*/\1="persi"/g' ~/.zshrc
+        else
+        sed -i "" 's/\(ZSH_THEME\).*/\1="persi"/g' ~/.zshrc
+    fi
+}
+
+persi_install_zsh_theme(){
+    cp "${PERSI_THEME_WORK_DIRECTORY}/persi.zsh-theme" "${PERSI_ZSH_CUSTOM_THEME_DIR}/persi.zsh-theme"
+    persi_deploy_zsh_theme
+}
+
+persi_install_command(){
+    read -q "PERSI_INSTALL_COMMAND?Whether to use the recommended alias command [y/n]: "
+    if [ $PERSI_INSTALL_COMMAND = 'y' ]; then
+        cp -R "${PERSI_THEME_WORK_DIRECTORY}/persi" "${PERSI_ZSH_CUSTOM_THEME_DIR}"
+        echo -e "\n${CLISTART}${CLIDGREEN}🍺 cp alias command to ${PERSI_ZSH_CUSTOM_THEME_DIR} ${CLIEND}"
+        return 0
+    else
+        echo -e "\n"
+        return 1
+    fi
+}
+
+persi_install_plugin(){
+    read -q "PERSI_INSTALL_PLUGIN?Whether to use the recommended plug-in (zsh_reload wd git gitignore git-flow git-flow-avh docker npm node golang wp-cli composer yarn systemd systemadmin ) [y/n]: "
+    if [ $PERSI_INSTALL_PLUGIN = 'y' ]; then
+        PERSI_ZSH_RECOMMENDED_PLUGIN="zsh_reload wd git gitignore git-flow git-flow-avh docker npm node golang wp-cli composer yarn systemd systemadmin "
+        # shellcheck disable=SC2046
+        persi_check_sed_is_gnu
+        if [ $PERSI_SED_IS_GNU = "1" ]; then
+            sed -i "s/\(^plugins=(\)\s*/\1${PERSI_ZSH_RECOMMENDED_PLUGIN}/" ~/.zshrc
+        else
+            sed -i "" "s/\(^plugins=(\)\s*/\1${PERSI_ZSH_RECOMMENDED_PLUGIN}/" ~/.zshrc
+        fi
+        echo -e "\n${CLISTART}${CLIDGREEN}🍺 plugin added ${PERSI_ZSH_RECOMMENDED_PLUGIN}${CLIEND}"
+    fi
+    echo -e "\n"
+}
+
+persi_set_homebrew_remote_tsinghua(){
+    read -q "PERSI_SET_HOMEBREW_REMOTE?Whether to use Homebrew Tsinghua mirror source [y/n]: "
+    if [ $PERSI_SET_HOMEBREW_REMOTE = 'y' ]; then
+        echo 'export HOMEBREW_CORE_GIT_REMOTE=https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-core.git' >> ~/.zshrc
+        echo 'export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles' >> ~/.zshrc
+        echo -e "\n${CLISTART}${CLIDGREEN}🍺 homebrew use tsinghua mirror ${CLIEND}"
+    fi
+}
+
+persi_drone_sign_repo(){
+    if [ ! $DRONE_SERVER -o ! $DRONE_TOKEN ]; then
+        echo -e '\n${CLISTART}${CLIDRED}Please configure the DRONE_SERVER and DRONE_TOKEN instance first${CLIEND}\n'
+        return 1
+    fi
+    echo -e "Drone Server: ${CLISTART}${CLIDGREEN}$DRONE_SERVER${CLIEND}"
+    persi_get_repo_name
+    echo -e "Repo Name: ${CLISTART}${CLIDGREEN}${PERSI_GIT_REPO_NAME}${CLIEND}"
+    if [ ! $1 ]; then
+        if [ -n $DRONE_CONFIG ]; then
+            PERSI_DRONE_CONFIG=$DRONE_CONFIG
+            else
+            PERSI_DRONE_CONFIG='.drone.yml'    
+        fi
+    else
+        PERSI_DRONE_CONFIG=$1
+    fi
+    read -q "PERSI_DRONE_SIGN?Whether to sign the current repository to ${PERSI_DRONE_CONFIG} [y/n] ?"
+    if [ $PERSI_DRONE_SIGN = 'y' ]; then
+        drone sign --save ${PERSI_GIT_REPO_NAME} ${PERSI_DRONE_CONFIG}
+        if [ $? = 0 ]; then
+            echo -e "${CLISTART}${CLIDGREEN}🍺 Drone sign successfully, Repo Name: ${PERSI_GIT_REPO_NAME} to ${PERSI_DRONE_CONFIG}successfully.${CLIEND}"
+        fi
+    fi
+    echo -e "\n"
+    return 0
+}
