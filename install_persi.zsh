@@ -5,7 +5,7 @@
 PERSI_THEME_WORK_DIRECTORY=$(dirname "$0")
 # shellcheck disable=SC2164
 pushd ${PERSI_THEME_WORK_DIRECTORY} > /dev/null
-PERSI_THEME_WORK_DIRECTORY=$(pwd)
+export PERSI_THEME_WORK_DIRECTORY=$(pwd)
 
 for config_file ($PERSI_THEME_WORK_DIRECTORY/persi/*.zsh); do
     if [ -f "${config_file}" ]; then
