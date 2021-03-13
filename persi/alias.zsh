@@ -94,7 +94,7 @@ alias dockerStopAll='docker stop $(docker ps -a -q)'
 alias dockerRemoveAll='docker rm $(docker ps -a -q)'
 
 # Drone
-alias dros='persi_drone_sign_repo'
+alias dros='persi_drone_repo_sign'
 
 # Mac
 alias macOsAppInstallSourceAll="sudo spctl --master-disable"
