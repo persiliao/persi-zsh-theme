@@ -172,14 +172,14 @@ persi_drone_repo_sign(){
         return 1
     fi
     PERSI_DRONE_REPO_CONFIG=`drone repo info ${PERSI_GIT_REPO_NAME}|grep Config|awk '{print $2}'`
-    if [ -n $PERSI_DRONE_REPO_CONFIG ]; then
+    if [ -z $PERSI_DRONE_REPO_CONFIG ]; then
         PERSI_DRONE_REPO_CONFIG='.drone.yml'
     fi
     read -q "PERSI_DRONE_SIGN?Whether to sign the current repository to ${PERSI_DRONE_REPO_CONFIG} [y/n]: "
     if [ $PERSI_DRONE_SIGN = 'y' ]; then
         `drone sign --save ${PERSI_GIT_REPO_NAME} ${PERSI_DRONE_REPO_CONFIG}`
         if [ $? = 0 ]; then
-            echo -e "${CLISTART}${CLIDGREEN}🍺 Drone sign successfully, Repo Name: ${PERSI_GIT_REPO_NAME} to ${PERSI_DRONE_REPO_CONFIG} successfully.${CLIEND}"
+            echo -e "\n${CLISTART}${CLIDGREEN}🍺 Drone sign successfully, Repo Name: ${PERSI_GIT_REPO_NAME} to ${PERSI_DRONE_REPO_CONFIG} successfully.${CLIEND}"
         fi
     fi
     echo -e "\n"
