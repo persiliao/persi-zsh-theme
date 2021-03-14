@@ -182,6 +182,5 @@ persi_drone_repo_sign(){
             echo -e "\n${CLISTART}${CLIDGREEN}🍺 Drone sign successfully, Repo Name: ${PERSI_GIT_REPO_NAME} to ${PERSI_DRONE_REPO_CONFIG} successfully.${CLIEND}"
         fi
     fi
-    echo -e "\n"
     return 0
 }
