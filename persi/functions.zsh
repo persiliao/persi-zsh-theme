@@ -171,7 +171,7 @@ persi_drone_repo_sign(){
     if [ $? -ne 0 ]; then
         return 1
     fi
-    PERSI_DRONE_REPO_CONFIG=`drone info ${PERSI_GIT_REPO_NAME}|grep Config|awk '{print $2}'`
+    PERSI_DRONE_REPO_CONFIG=`drone repo info ${PERSI_GIT_REPO_NAME}|grep Config|awk '{print $2}'`
     if [ -n $PERSI_DRONE_REPO_CONFIG ]; then
         PERSI_DRONE_REPO_CONFIG='.drone.yml'
     fi
