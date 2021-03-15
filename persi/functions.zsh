@@ -84,7 +84,8 @@ persi_set_homebrew_remote_tsinghua(){
                 brew tap --force-auto-update homebrew/${tap} https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-${tap}.git
             fi
         done
-        `brew update-reset`
+        STEP=`brew update-reset`
+        echo $STEP
         echo -e "\n${CLISTART}${CLIDGREEN}🍺 homebrew use tsinghua mirror ${CLIEND}"
     fi
 }
@@ -99,7 +100,8 @@ persi_set_homebrew_remote_github(){
                 git -C "$(brew --repo homebrew/${tap})" remote set-url origin https://github.com/Homebrew/homebrew-${tap}.git
             fi
         done
-        `brew update-reset`
+        STEP=`brew update-reset`
+        echo $STEP
         echo -e "\n${CLISTART}${CLIDGREEN}🍺 homebrew use github mirror ${CLIEND}"
     fi
 }
