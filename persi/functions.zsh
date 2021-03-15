@@ -72,15 +72,35 @@ persi_install_plugin(){
 persi_set_homebrew_remote_tsinghua(){
     read -q "PERSI_SET_HOMEBREW_REMOTE?Whether to use Homebrew Tsinghua mirror source [y/n]: "
     if [ $PERSI_SET_HOMEBREW_REMOTE = 'y' ]; then
-        if [ -z $HOMEBREW_CORE_GIT_REMOTE ]; then
-            echo 'export HOMEBREW_CORE_GIT_REMOTE=https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-core.git' >> ~/.zshrc
-        fi
-        
-        if [ -z $HOMEBREW_BOTTLE_DOMAIN ]; then
-            echo 'export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.tuna.tsinghua.edu.cn/homebrew-bottles' >> ~/.zshrc
-        fi
-
+        `git -C "$(brew --repo)" remote set-url origin https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/brew.git`
+        BREW_TAPS="$(brew tap)"
+        for tap in core cask{,-fonts,-drivers,-versions}; do
+            if echo "$BREW_TAPS" | grep -qE "^homebrew/${tap}\$"; then
+                # 将已有 tap 的上游设置为本镜像并设置 auto update
+                # 注：原 auto update 只针对托管在 GitHub 上的上游有效
+                git -C "$(brew --repo homebrew/${tap})" remote set-url origin https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-${tap}.git
+                git -C "$(brew --repo homebrew/${tap})" config homebrew.forceautoupdate true
+            else   # 在 tap 缺失时自动安装（如不需要请删除此行和下面一行）
+                brew tap --force-auto-update homebrew/${tap} https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/homebrew-${tap}.git
+            fi
+        done
+        `brew update-reset`
         echo -e "\n${CLISTART}${CLIDGREEN}🍺 homebrew use tsinghua mirror ${CLIEND}"
+    fi
+}
+
+persi_set_homebrew_remote_github(){
+    read -q "PERSI_SET_HOMEBREW_REMOTE?Whether to use Homebrew Github mirror source [y/n]: "
+    if [ $PERSI_SET_HOMEBREW_REMOTE = 'y' ]; then
+        `git -C "$(brew --repo)" remote set-url origin https://github.com/Homebrew/brew.git`
+        BREW_TAPS="$(brew tap)"
+        for tap in core cask{,-fonts,-drivers,-versions}; do
+            if echo "$BREW_TAPS" | grep -qE "^homebrew/${tap}\$"; then
+                git -C "$(brew --repo homebrew/${tap})" remote set-url origin https://github.com/Homebrew/homebrew-${tap}.git
+            fi
+        done
+        `brew update-reset`
+        echo -e "\n${CLISTART}${CLIDGREEN}🍺 homebrew use github mirror ${CLIEND}"
     fi
 }
 
