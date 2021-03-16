@@ -56,9 +56,6 @@ alias cunodev="composer update --no-dev"
 alias cinodev="composer install --no-dev"
 alias crb='./bin/satis build ./satis.json ./build'
 
-# Drone
-alias droneSign='droneSignRepo'
-
 # Hyperf
 alias hyperf="./bin/hyperf.php 2>/dev/null"
 alias hyperfStart="./bin/hyperf.php start 2>/dev/null"
