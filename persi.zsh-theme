@@ -40,7 +40,7 @@ ZSH_THEME_GIT_PROMPT_DIRTY=" "💥
 ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$fg[green]%}?%{$reset_color%}"
 ZSH_THEME_GIT_PROMPT_CLEAN=" "💫
 
-for config_file ($ZSH_CUSTOM/themes/persi/*.zsh); do
+for config_file (${ZSH_CUSTOM}/themes/persi/*.zsh); do
     if [ -f "${config_file}" ]; then
         source $config_file
     fi

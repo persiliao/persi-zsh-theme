@@ -7,7 +7,7 @@ PERSI_THEME_WORK_DIRECTORY=$(dirname "$0")
 pushd ${PERSI_THEME_WORK_DIRECTORY} > /dev/null
 export PERSI_THEME_WORK_DIRECTORY=$(pwd)
 
-for config_file ($PERSI_THEME_WORK_DIRECTORY/persi/*.zsh); do
+for config_file (${PERSI_THEME_WORK_DIRECTORY}/persi/*.zsh); do
     if [ -f "${config_file}" ]; then
         source $config_file
     fi
@@ -18,8 +18,6 @@ persi_set_zsh_custom_dir
 persi_install_command
 
 persi_install_plugin
-
-persi_set_homebrew_remote_tsinghua
 
 persi_install_zsh_theme
 

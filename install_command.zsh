@@ -8,7 +8,7 @@ pushd ${PERSI_THEME_WORK_DIRECTORY} > /dev/null
 export PERSI_THEME_WORK_DIRECTORY=$(pwd)
 # shellcheck disable=SC1090
 
-for config_file ($PERSI_THEME_WORK_DIRECTORY/persi/*.zsh); do
+for config_file (${PERSI_THEME_WORK_DIRECTORY}/persi/*.zsh); do
     if [ -f "${config_file}" ]; then
         source $config_file
     fi
