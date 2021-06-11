@@ -112,6 +112,9 @@ if [ -e "/usr/local/php/var/log/php-fpm.log" ]; then
     PERSI_PHP_FPM_ERROR_LOG="/usr/local/var/log/php-fpm.log"
 fi
 
+
+# shellcheck disable=SC2139
+alias phpEditConfig="vim $(php --ini|grep 'php.ini' |tail -n 1|awk '{printf $4}')"
 # shellcheck disable=SC2139
 alias phpWatchLog="tail -n 100 -F ${PERSI_PHP_FPM_ERROR_LOG}"
 # shellcheck disable=SC2139
