@@ -39,6 +39,10 @@ alias gacmsg='git add . && git commit -m'
 alias gacsp='git add . && git commit -m "update" && git pull origin $(git_current_branch) && git submodule update --recursive --remote --merge && git push origin $(git_current_branch)'
 alias gacp='git add . && git commit -m "update" && git pull origin $(git_current_branch) && git push origin $(git_current_branch)'
 
+# System
+alias showMemoryTopProcess='ps -aux | sort -k4nr | head -n 5'
+alias showCPUTopProcess='ps -aux | sort -k3nr | head -n 5'
+
 # Python
 alias pipupgradeself='python3 -m pip install --upgrade pip'
 
