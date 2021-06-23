@@ -32,7 +32,8 @@ function persi_gacsp()
         echo 'Aborting commit due to empty commit message'
         return
     fi
-    `git add . && git commit -m "${message}" && git pull origin $(git_current_branch) && git submodule update --recursive --remote --merge && git add . && git commit -m "${message}" && git push origin $(git_current_branch)`
+    local branch=$(git_current_branch)
+    `git add . && git commit -m "${message}" && git pull origin ${branch} && git submodule update --recursive --remote --merge && git add . && git commit -m "${message}" && git push origin ${branch}`
 }
 
 function persi_gacp()
@@ -42,7 +43,8 @@ function persi_gacp()
         echo 'Aborting commit due to empty commit message'
         return
     fi
-    `git add . && git commit -m "${message}" && git pull origin $(git_current_branch) && git push origin $(git_current_branch)`
+    local branch=$(git_current_branch)
+    `git add . && git commit -m '${message}' && git pull origin ${branch} && git push origin ${branch}`
 }
 
 # Git
