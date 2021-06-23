@@ -30,7 +30,7 @@ function persi_gacsp()
     local message=$1
     if [[ -z ${message} ]]; then
         echo 'Aborting commit due to empty commit message'
-        exit 0
+        return
     fi
     `git add . && git commit -m "${message}" && git pull origin $(git_current_branch) && git submodule update --recursive --remote --merge && git add . && git commit -m "${message}" && git push origin $(git_current_branch)`
 }
