@@ -35,6 +35,16 @@ function persi_gacsp()
     `git add . && git commit -m "${message}" && git pull origin $(git_current_branch) && git submodule update --recursive --remote --merge && git add . && git commit -m "${message}" && git push origin $(git_current_branch)`
 }
 
+function persi_gacp()
+{
+    local message=$1
+    if [[ -z ${message} ]]; then
+        echo 'Aborting commit due to empty commit message'
+        return
+    fi
+    `git add . && git commit -m "${message}" && git pull origin $(git_current_branch) && git push origin $(git_current_branch)`
+}
+
 # Git
 alias gtdall='git tag |xargs git tag -d'
 alias gct='git checkout test'
@@ -47,7 +57,7 @@ alias gsurm='git submodule update --recursive --remote --merge'
 alias ggplsurm='git pull origin $(git_main_branch) && git submodule update --recursive --remote --merge'
 alias gacmsg='git add . && git commit -m'
 alias gacsp='persi_gacsp '
-alias gacp='git add . && git commit -m "update" && git pull origin $(git_current_branch) && git push origin $(git_current_branch)'
+alias gacp='persi_gacp '
 
 # System
 alias showMemoryTopProcess='ps -aux | sort -k4nr | head -n '
