@@ -25,6 +25,16 @@ alias grand="openssl rand -hex"
 alias grand16="openssl rand -hex 16"
 alias grand32="openssl rand -hex 32"
 
+function persi_gacsp()
+{
+    local message=$1
+    if [[ -z ${message} ]]; then
+        echo 'Aborting commit due to empty commit message'
+        exit 0
+    fi
+    `git add . && git commit -m "${message}" && git pull origin $(git_current_branch) && git submodule update --recursive --remote --merge && git add . && git commit -m "${message}" && git push origin $(git_current_branch)`
+}
+
 # Git
 alias gtdall='git tag |xargs git tag -d'
 alias gct='git checkout test'
@@ -36,7 +46,7 @@ alias gsui='git submodule update --init --recursive'
 alias gsurm='git submodule update --recursive --remote --merge'
 alias ggplsurm='git pull origin $(git_main_branch) && git submodule update --recursive --remote --merge'
 alias gacmsg='git add . && git commit -m'
-alias gacsp='git add . && git commit -m "update" && git pull origin $(git_current_branch) && git submodule update --recursive --remote --merge && git push origin $(git_current_branch)'
+alias gacsp='persi_gacsp '
 alias gacp='git add . && git commit -m "update" && git pull origin $(git_current_branch) && git push origin $(git_current_branch)'
 
 # System
