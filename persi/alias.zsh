@@ -33,7 +33,7 @@ function persi_gacsp()
         return
     fi
     local branch=$(git_current_branch)
-    `git add . && git commit -m "${message}" && git pull origin ${branch} && git submodule update --recursive --remote --merge && git add . && git commit -m "${message}" && git push origin ${branch}`
+    git add . && git commit -m "${*}" && git pull origin ${branch} && git submodule update --recursive --remote --merge && git add . && git commit -m "${*}" && git push origin ${branch}
 }
 
 function persi_gacp()
@@ -44,8 +44,31 @@ function persi_gacp()
         return
     fi
     local branch=$(git_current_branch)
-    `git add . && git commit -m '${message}' && git pull origin ${branch} && git push origin ${branch}`
+    git add . && git commit -m "${*}" && git pull origin ${branch} && git push origin ${branch}
 }
+
+function persi_gacmsg()
+{
+    local message=$1
+    if [[ -z ${message} ]]; then
+        echo 'Aborting commit due to empty commit message'
+        return
+    fi
+    local branch=$(git_current_branch)
+    git add . && git commit -m "${*}"
+}
+
+function persi_gcmsg()
+{
+    local message=$1
+    if [[ -z ${message} ]]; then
+        echo 'Aborting commit due to empty commit message'
+        return
+    fi
+    local branch=$(git_current_branch)
+    git commit -m "${*}"
+}
+
 
 # Git
 alias gtdall='git tag |xargs git tag -d'
@@ -57,7 +80,8 @@ alias gsa='git submodule add '
 alias gsui='git submodule update --init --recursive'
 alias gsurm='git submodule update --recursive --remote --merge'
 alias ggplsurm='git pull origin $(git_main_branch) && git submodule update --recursive --remote --merge'
-alias gacmsg='git add . && git commit -m'
+alias gcmsg='persi_gcmsg '
+alias gacmsg='persi_gacmsg '
 alias gacsp='persi_gacsp '
 alias gacp='persi_gacp '
 
