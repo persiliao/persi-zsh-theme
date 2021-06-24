@@ -29,7 +29,7 @@ function persi_gacsp()
 {
     local message=$1
     if [[ -z ${message} ]]; then
-        echo 'Aborting commit due to empty commit message'
+        echo -e "${CLISTART}${CLIRED}Aborting commit due to empty commit message${CLIRED}"
         return
     fi
     local branch=$(git_current_branch)
@@ -40,7 +40,7 @@ function persi_gacp()
 {
     local message=$1
     if [[ -z ${message} ]]; then
-        echo 'Aborting commit due to empty commit message'
+        echo -e "${CLISTART}${CLIRED}Aborting commit due to empty commit message${CLIRED}"
         return
     fi
     local branch=$(git_current_branch)
@@ -51,10 +51,9 @@ function persi_gacmsg()
 {
     local message=$1
     if [[ -z ${message} ]]; then
-        echo 'Aborting commit due to empty commit message'
+        echo -e "${CLISTART}${CLIRED}Aborting commit due to empty commit message${CLIRED}"
         return
     fi
-    local branch=$(git_current_branch)
     git add . && git commit -m "${*}"
 }
 
@@ -62,10 +61,9 @@ function persi_gcmsg()
 {
     local message=$1
     if [[ -z ${message} ]]; then
-        echo 'Aborting commit due to empty commit message'
+        echo -e "${CLISTART}${CLIRED}Aborting commit due to empty commit message${CLIRED}"
         return
     fi
-    local branch=$(git_current_branch)
     git commit -m "${*}"
 }
 
