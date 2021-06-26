@@ -184,7 +184,7 @@ function dockerExec()
     if [ -z ${execCommand} ]; then
         execCommand='/bin/bash'
     fi
-    `docker exec -ti -w ${workDir} ${container} ${execCommand}`
+    docker exec -ti -w ${workDir} ${container} ${execCommand}
 }
 
 alias dockerStartAll='docker start $(docker ps -a -q)'
