@@ -139,7 +139,7 @@ function dockerExec()
 {
     local container=$1
     local workDir=$3
-    local command=$2
+    local execCommand=$2
     if [ -z ${container} ]; then
         showFailureMessage "Please select the container to be operated"
         return 
@@ -148,9 +148,9 @@ function dockerExec()
         workDir='/root/'
     fi
     if [ -z ${command} ]; then
-        command ='bash'
+        execCommand ='bash'
     fi
-    docker exec -ti -w ${workDir} ${container} ${command}
+    docker exec -ti -w ${workDir} ${container} ${execCommand}
 }
 
 alias dockerStartAll='docker start $(docker ps -a -q)'
