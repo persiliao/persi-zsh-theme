@@ -70,7 +70,7 @@ function persi_gcmsg()
 
 function persi_gitPushAll()
 {
-    `git remote -v|grep push|awk '{print $2}'|git push $1 $(git_main_branch)`
+    `git remote -v|grep push|awk '{print $1}'|xargs -t -n 1 git push`
 }
 
 # Git
@@ -87,7 +87,7 @@ alias gcmsg='persi_gcmsg'
 alias gacmsg='persi_gacmsg'
 alias gacsp='persi_gacsp'
 alias gacp='persi_gacp'
-alias gpall='persi_gitPushAll'
+alias gpushall='persi_gitPushAll'
 
 # System
 alias showMemoryTopProcess='ps -aux | sort -k4nr | head -n '
