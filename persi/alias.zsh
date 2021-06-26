@@ -148,7 +148,7 @@ function dockerExec()
         workDir='/root/'
     fi
     if [ -z ${execCommand} ]; then
-        execCommand ='/bin/bash'
+        execCommand='/bin/bash'
     fi
     docker exec -ti -w ${workDir} ${container} ${execCommand}
 }
