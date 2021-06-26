@@ -33,7 +33,7 @@ function persi_gacsp()
         return
     fi
     local branch=$(git_current_branch)
-    git add . && git commit -m "${*}" && git pull origin ${branch} && git submodule update --recursive --remote --merge && git add . && git commit -m "${*}" && git push origin ${branch}
+    `git add . && git commit -m "${*}" && git pull origin ${branch} && git submodule update --recursive --remote --merge && git add . && git commit -m "${*}" && git push origin ${branch}`
 }
 
 function persi_gacp()
@@ -44,7 +44,7 @@ function persi_gacp()
         return
     fi
     local branch=$(git_current_branch)
-    git add . && git commit -m "${*}" && git pull origin ${branch} && git push origin ${branch}
+    `git add . && git commit -m "${*}" && git pull origin ${branch} && git push origin ${branch}`
 }
 
 function persi_gacmsg()
@@ -54,7 +54,7 @@ function persi_gacmsg()
         echo -e "${CLISTART}${CLIRED}Aborting commit due to empty commit message${CLIRED}"
         return
     fi
-    git add . && git commit -m "${*}"
+    `git add . && git commit -m "${*}"`
 }
 
 function persi_gcmsg()
@@ -64,7 +64,7 @@ function persi_gcmsg()
         echo -e "${CLISTART}${CLIRED}Aborting commit due to empty commit message${CLIRED}"
         return
     fi
-    git commit -m "${*}"
+    `git commit -m "${*}"`
 }
 
 
@@ -184,10 +184,10 @@ function phpEditConfig()
 {
     local phpConfigPath=$(php --ini|grep php.ini |tail -n 1|awk '{printf $4}')
     if [ -z $phpConfigPath ]; then
-        echo -e "${CLISTART}${CLIFAILURE} php.ini not found !${CLIEND}"
+        showFailureMessage "php.ini not found !"
         return
     fi
-    vim $phpConfigPath
+    `vim ${phpConfigPath}`
 }
 
 # shellcheck disable=SC2139
