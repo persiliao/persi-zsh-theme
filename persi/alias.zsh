@@ -135,6 +135,7 @@ alias hyperfGenProcess="./bin/hyperf.php gen:process"
 alias hyperfVendorPublish="./bin/hyperf.php vendor:publish"
 
 # Docker
+alias dockerStopAll='docker start $(docker ps -a -q)'
 alias dockerStopAll='docker stop $(docker ps -a -q)'
 alias dockerRemoveAll='docker rm $(docker ps -a -q)'
 
@@ -163,6 +164,10 @@ fi
 function phpEditConfig()
 {
     local phpConfigPath=$(php --ini|grep php.ini |tail -n 1|awk '{printf $4}')
+    if [ -z $phpConfigPath ]; then
+        echo -e "${CLISTART}${CLIFAILURE} php.ini not found !${CLIEND}"
+        return
+    fi
     vim $phpConfigPath
 }
 
