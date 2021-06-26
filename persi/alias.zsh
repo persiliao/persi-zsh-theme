@@ -68,6 +68,11 @@ function persi_gcmsg()
 }
 
 
+function persi_gitPushAll()
+{
+    `git remote -v|grep push|awk '{print $2}'|git push $1 $(git_main_branch)`
+}
+
 # Git
 alias gtdall='git tag |xargs git tag -d'
 alias gct='git checkout test'
@@ -78,10 +83,11 @@ alias gsa='git submodule add '
 alias gsui='git submodule update --init --recursive'
 alias gsurm='git submodule update --recursive --remote --merge'
 alias ggplsurm='git pull origin $(git_main_branch) && git submodule update --recursive --remote --merge'
-alias gcmsg='persi_gcmsg '
-alias gacmsg='persi_gacmsg '
-alias gacsp='persi_gacsp '
-alias gacp='persi_gacp '
+alias gcmsg='persi_gcmsg'
+alias gacmsg='persi_gacmsg'
+alias gacsp='persi_gacsp'
+alias gacp='persi_gacp'
+alias gpall='persi_gitPushAll'
 
 # System
 alias showMemoryTopProcess='ps -aux | sort -k4nr | head -n '
