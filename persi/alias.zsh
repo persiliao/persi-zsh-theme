@@ -135,9 +135,28 @@ alias hyperfGenProcess="./bin/hyperf.php gen:process"
 alias hyperfVendorPublish="./bin/hyperf.php vendor:publish"
 
 # Docker
-alias dockerStopAll='docker start $(docker ps -a -q)'
+function dockerExec()
+{
+    local container=$1
+    local workDir=$3
+    local command=$2
+    if [ -z ${container} ]; then
+        showFailureMessage "Please select the container to be operated"
+        return 
+    fi
+    if [ -z ${workDir} ]; then
+        workDir='/root/'
+    fi
+    if [ -z ${command} ]; then
+        command ='bash'
+    fi
+    docker exec -ti -w ${workDir} ${container} ${command}
+}
+
+alias dockerStartAll='docker start $(docker ps -a -q)'
 alias dockerStopAll='docker stop $(docker ps -a -q)'
 alias dockerRemoveAll='docker rm $(docker ps -a -q)'
+alias dockerExec='dockerExec'
 
 # Drone
 alias dros='persi_drone_repo_sign'
