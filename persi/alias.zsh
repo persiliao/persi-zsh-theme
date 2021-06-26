@@ -13,9 +13,19 @@ alias -s bz2='tar -xjvf'
 # required install unrar
 alias -s rar='unrar x'
 
+function persi_lg()
+{
+    `ls -alhF|grep -v grep |grep -i $1`
+}
+
+function persi_pg()
+{
+    `ps -ef|grep -v grep |grep -i $1`
+}
+
 # Zsh
 alias tczero="truncate -s 0"
-alias zchistory="truncate -s 0 ~/.zsh_history"
+alias ztczhistory="truncate -s 0 ~/.zsh_history"
 alias ll="ls -alhF"
 alias lg="ls -alhF|grep -v grep |grep -i"
 alias pg="pstree|grep -v grep |grep -i"
@@ -25,11 +35,12 @@ alias grand="openssl rand -hex"
 alias grand16="openssl rand -hex 16"
 alias grand32="openssl rand -hex 32"
 
+# Git
 function persi_gacsp()
 {
     local message=$1
     if [[ -z ${message} ]]; then
-        echo -e "${CLISTART}${CLIRED}Aborting commit due to empty commit message${CLIRED}"
+        showFailureMessage "Aborting commit due to empty commit message"
         return
     fi
     local branch=$(git_current_branch)
@@ -40,7 +51,7 @@ function persi_gacp()
 {
     local message=$1
     if [[ -z ${message} ]]; then
-        echo -e "${CLISTART}${CLIRED}Aborting commit due to empty commit message${CLIRED}"
+        showFailureMessage "Aborting commit due to empty commit message"
         return
     fi
     local branch=$(git_current_branch)
@@ -51,7 +62,7 @@ function persi_gacmsg()
 {
     local message=$1
     if [[ -z ${message} ]]; then
-        echo -e "${CLISTART}${CLIRED}Aborting commit due to empty commit message${CLIRED}"
+        showFailureMessage "Aborting commit due to empty commit message"
         return
     fi
     `git add . && git commit -m "${*}"`
@@ -61,25 +72,24 @@ function persi_gcmsg()
 {
     local message=$1
     if [[ -z ${message} ]]; then
-        echo -e "${CLISTART}${CLIRED}Aborting commit due to empty commit message${CLIRED}"
+        showFailureMessage "Aborting commit due to empty commit message"
         return
     fi
     `git commit -m "${*}"`
 }
-
 
 function persi_gitPushAll()
 {
     `git remote -v|grep push|awk '{print $1}'|xargs -t -n 1 git push`
 }
 
-# Git
 alias gtdall='git tag |xargs git tag -d'
 alias gct='git checkout test'
+alias gmt='git merge test'
 alias gmm='git merge master'
 alias gmd='git merge develop'
 alias ggpushmaster='git push origin $(git_main_branch)'
-alias gsa='git submodule add '
+alias gsa='git submodule add'
 alias gsui='git submodule update --init --recursive'
 alias gsurm='git submodule update --recursive --remote --merge'
 alias ggplsurm='git pull origin $(git_main_branch) && git submodule update --recursive --remote --merge'
@@ -90,8 +100,26 @@ alias gacp='persi_gacp'
 alias gpushall='persi_gitPushAll'
 
 # System
-alias showMemoryTopProcess='ps -aux | sort -k4nr | head -n '
-alias showCPUTopProcess='ps -aux | sort -k3nr | head -n '
+function showMemoryTopProcess()
+{
+    local number=$1
+    if [ -z ${number} ]; then
+        number=10
+    fi
+    ps -ef|sort -k4nr|head -n ${number}
+}
+
+function showCPUTopProcess()
+{
+    local number=$1
+    if [ -z ${number} ]; then
+        number=10
+    fi
+    ps -ef | sort -k3nr | head -n ${number}
+}
+
+alias showMemoryTopProcess='showMemoryTopProcess'
+alias showCPUTopProcess='showCPUTopProcess'
 
 # Python
 alias pipupgradeself='python3 -m pip install --upgrade pip'
