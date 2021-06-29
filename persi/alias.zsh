@@ -34,7 +34,7 @@ alias ztczhistory="truncate -s 0 ~/.zsh_history"
 alias ll="ls -alhF"
 alias lg="persi_lg"
 alias pg='persi_pg'
-alias npg='persi_netg'
+alias npg='persi_netpg'
 alias rm="rm -ri"
 # Generate rand password
 alias grand="openssl rand -hex"
