@@ -127,6 +127,35 @@ function showCPUTopProcess()
 alias showMemoryTopProcess='showMemoryTopProcess'
 alias showCPUTopProcess='showCPUTopProcess'
 
+# Ubuntu
+function persi_ubuntu_set_mirrors()
+{
+    if [ ! -s '/etc/apt/sources.list' ]; then
+        showFailureMessage "Current OS system not a ubuntu"
+        return 1
+    fi
+    local mirror=$1
+    if [ -z $mirror ]; then
+        showFailureMessage "Please select the mirror to be operated"
+        return 1
+    fi
+    local seted=0
+    if [ $mirror = 'aliyun' ]; then
+        sed -i s/archive.ubuntu.com/mirrors.aliyun.com/g /etc/apt/sources.list
+        seted=1
+    fi
+    if [ $mirror = 'tencent' ]; then
+        sed -i s/archive.ubuntu.com/mirrors.cloud.tencent.com/g /etc/apt/sources.list
+        seted=1
+    fi
+    if [ $seted=1 ]; then
+        apt clean all
+        apt update
+    fi
+}
+
+alias ubtMirror='persi_ubuntu_set_mirrors'
+
 # Python
 alias pipupgradeself='python3 -m pip install --upgrade pip'
 
