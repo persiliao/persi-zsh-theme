@@ -13,7 +13,6 @@ alias -s bz2='tar -xjvf'
 # required install unrar
 #alias -s rar='unrar x'
 
-
 function persi_lg()
 {
     ls -alhF|grep -v grep |grep -i $1
