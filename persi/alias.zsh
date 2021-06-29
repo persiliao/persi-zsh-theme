@@ -23,12 +23,18 @@ function persi_pg()
     `ps -ef|grep -v grep |grep -i $1`
 }
 
+function persi_netpg()
+{
+    `netstat -an|grep -v grep|grep -i $1`
+}
+
 # Zsh
 alias tczero="truncate -s 0"
 alias ztczhistory="truncate -s 0 ~/.zsh_history"
 alias ll="ls -alhF"
-alias lg="ls -alhF|grep -v grep |grep -i"
-alias pg="pstree|grep -v grep |grep -i"
+alias lg="persi_lg"
+alias pg='persi_pg'
+alias npg='persi_netg'
 alias rm="rm -ri"
 # Generate rand password
 alias grand="openssl rand -hex"
