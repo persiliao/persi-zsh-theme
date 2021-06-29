@@ -66,7 +66,6 @@ persi_install_plugin(){
         fi
         echo -e "\n${CLISTART}${CLIDGREEN}🍺 plugin added ${PERSI_ZSH_RECOMMENDED_PLUGIN}${CLIEND}"
     fi
-    echo -e "\n"
 }
 
 persi_set_homebrew_remote_tsinghua(){
