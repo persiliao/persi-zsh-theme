@@ -15,17 +15,17 @@ alias -s rar='unrar x'
 
 function persi_lg()
 {
-    `ls -alhF|grep -v grep |grep -i $1`
+    ls -alhF|grep -v grep |grep -i $1
 }
 
 function persi_pg()
 {
-    `ps -ef|grep -v grep |grep -i $1`
+    ps -ef|grep -v grep |grep -i $1
 }
 
 function persi_netpg()
 {
-    `netstat -an|grep -v grep|grep -i $1`
+    netstat -an|grep -v grep|grep -i $1
 }
 
 # Zsh
