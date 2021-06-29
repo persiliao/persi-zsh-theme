@@ -7,7 +7,6 @@ PERSI_THEME_WORK_DIRECTORY=$(dirname "$0")
 pushd ${PERSI_THEME_WORK_DIRECTORY} > /dev/null
 export PERSI_THEME_WORK_DIRECTORY=$(pwd)
 # shellcheck disable=SC1090
-
 for config_file (${PERSI_THEME_WORK_DIRECTORY}/persi/*.zsh); do
     if [ -f "${config_file}" ]; then
         source $config_file
@@ -23,5 +22,5 @@ if [ $? = "0" ]; then
 
     persi_reload_zsh
 
-    echo -e "${CLISTART}${CLIDGREEN}🍺 persi.zsh-theme command Installed successfully.${CLIEND}"
+    echo -e "${CLISTART}${CLIDGREEN}🍺 persi.zsh-theme alias command installed successfully.${CLIEND}"
 fi

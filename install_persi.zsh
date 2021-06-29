@@ -6,7 +6,7 @@ PERSI_THEME_WORK_DIRECTORY=$(dirname "$0")
 # shellcheck disable=SC2164
 pushd ${PERSI_THEME_WORK_DIRECTORY} > /dev/null
 export PERSI_THEME_WORK_DIRECTORY=$(pwd)
-
+# shellcheck disable=SC1090
 for config_file (${PERSI_THEME_WORK_DIRECTORY}/persi/*.zsh); do
     if [ -f "${config_file}" ]; then
         source $config_file
@@ -21,6 +21,4 @@ persi_install_plugin
 
 persi_install_zsh_theme
 
-persi_reload_zsh
-
-echo -e "\n${CLISTART}${CLIDGREEN}🍺 persi.zsh-theme Installed successfully.${CLIEND}"
+echo -e "${CLISTART}${CLIDGREEN}🍺 persi.zsh-theme installed successfully.${CLIEND}"
