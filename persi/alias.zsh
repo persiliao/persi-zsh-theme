@@ -50,7 +50,7 @@ function persi_gacsp()
         return
     fi
     local branch=$(git_current_branch)
-    `git add . && git commit -m "${*}" && git pull origin ${branch} && git submodule update --recursive --remote --merge && git add . && git commit -m "${*}" && git push origin ${branch}`
+    git add . && git commit -m "${*}" && git pull origin ${branch} && git submodule update --recursive --remote --merge && git add . && git commit -m "${*}" && git push origin ${branch}
 }
 
 function persi_gacp()
@@ -61,7 +61,7 @@ function persi_gacp()
         return
     fi
     local branch=$(git_current_branch)
-    `git add . && git commit -m "${*}" && git pull origin ${branch} && git push origin ${branch}`
+    git add . && git commit -m "${*}" && git pull origin ${branch} && git push origin ${branch}
 }
 
 function persi_gacmsg()
@@ -71,7 +71,7 @@ function persi_gacmsg()
         showFailureMessage "Aborting commit due to empty commit message"
         return
     fi
-    `git add . && git commit -m "${*}"`
+    git add . && git commit -m "${*}"
 }
 
 function persi_gcmsg()
@@ -81,12 +81,12 @@ function persi_gcmsg()
         showFailureMessage "Aborting commit due to empty commit message"
         return
     fi
-    `git commit -m "${*}"`
+    git commit -m "${*}"
 }
 
 function persi_gitPushAll()
 {
-    `git remote -v|grep push|awk '{print $1}'|xargs -t -n 1 git push`
+    git remote -v|grep push|awk '{print $1}'|xargs -t -n 1 git push
 }
 
 alias gtdall='git tag |xargs git tag -d'
@@ -227,7 +227,7 @@ function phpEditConfig()
         showFailureMessage "php.ini not found !"
         return
     fi
-    `vim ${phpConfigPath}`
+    vim ${phpConfigPath}
 }
 
 # shellcheck disable=SC2139
