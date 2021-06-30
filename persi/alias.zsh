@@ -157,7 +157,32 @@ function persi_ubuntu_set_mirrors()
 alias ubtMirror='persi_ubuntu_set_mirrors'
 
 # Python
+function persi_pip_set_tencent()
+{
+    pip install pip -U
+    pip config set global.index-url https://mirrors.cloud.tencent.com/pypi/simple
+}
 alias pipupgradeself='python3 -m pip install --upgrade pip'
+alias pipsetmirrortencent='persi_pip_set_tencent'
+
+# Javascript & Node
+function persi_npm_set_mirrors()
+{
+    local mirror=$1
+    if [ -z $mirror ]; then
+        showFailureMessage "Please select the mirror to be operated, e:tencent,aliyun"
+        return 1
+    fi
+    local seted=0
+    if [ $mirror = 'aliyun' ]; then
+        npm config set registry https://registry.npm.taobao.org/
+    fi
+    if [ $mirror = 'tencent' ]; then
+        npm config set registry http://mirrors.cloud.tencent.com/npm/
+    fi
+}
+
+alias npmSetMirror='persi_npm_set_mirrors'
 
 # Core dump for mac
 alias coreclear="rm -rf /cores/core.*"
