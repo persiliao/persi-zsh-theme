@@ -176,13 +176,16 @@ function persi_npm_set_mirrors()
     local seted=0
     if [ $mirror = 'aliyun' ]; then
         npm config set registry https://registry.npm.taobao.org/
+        showSuccessMessage 'npm set mirror successfully. https://registry.npm.taobao.org'
     fi
     if [ $mirror = 'tencent' ]; then
-        npm config set registry http://mirrors.cloud.tencent.com/npm/
+        npm config set registry https://mirrors.cloud.tencent.com/npm/
+        showSuccessMessage 'npm mirror successfully. https://mirrors.cloud.tencent.com/npm'
     fi
 }
 
 alias npmSetMirror='persi_npm_set_mirrors'
+alias npmUnsetMirror='npm config delete registry'
 
 # Core dump for mac
 alias coreclear="rm -rf /cores/core.*"
