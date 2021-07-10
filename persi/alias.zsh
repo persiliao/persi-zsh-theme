@@ -124,8 +124,18 @@ function showCPUTopProcess()
     ps -ef | sort -k3nr | head -n ${number}
 }
 
+function persi_tail_f_n()
+{
+    if [ ! -s $1 ]; then
+        showFailureMessage "File ${1} does not exists"
+        return 1
+    fi
+    tail -n 100 -F $1
+}
+
 alias showMemoryTopProcess='showMemoryTopProcess'
 alias showCPUTopProcess='showCPUTopProcess'
+alias tf='persi_tail_f_n'
 
 # Ubuntu
 function persi_ubuntu_set_mirrors()
