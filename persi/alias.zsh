@@ -126,7 +126,7 @@ function showCPUTopProcess()
 
 function persi_tail_f_n()
 {
-    if [ ! -s $1 ]; then
+    if [ ! -f $1 ]; then
         showFailureMessage "File ${1} does not exists"
         return 1
     fi
