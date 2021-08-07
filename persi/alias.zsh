@@ -196,6 +196,7 @@ function persi_npm_set_mirrors()
 
 alias npmSetMirror='persi_npm_set_mirrors'
 alias npmUnsetMirror='npm config delete registry'
+alias npmRB='npm run build'
 
 # Core dump for mac
 alias coreclear="rm -rf /cores/core.*"
