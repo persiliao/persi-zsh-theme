@@ -1,11 +1,11 @@
 persi_check_dir_writable() {
-    if [[ ! -w "$PWD" ]]; then
+    if [ ! -w "$PWD" ]; then
         echo " "🔐
     fi
 }
 persi_pwd() {
     local PERSI_PWD=${PWD/#$HOME/'~'}
-    if [[ $PERSI_PWD == '~' ]]; then
+    if [ $PERSI_PWD = '~' ]; then
     else
         PERSI_PWD=${PERSI_PWD##*/}
     fi
