@@ -1,5 +1,7 @@
 persi_check_sed_is_gnu(){
+    # shellcheck disable=SC2155
     local IS_GNU=`sed --version | grep GNU | wc -l`
+    # shellcheck disable=SC2166
     if [ $? = 0 -a $IS_GNU -gt 0 ]; then
         export PERSI_SED_IS_GNU="1"
     fi
@@ -7,6 +9,7 @@ persi_check_sed_is_gnu(){
 }
 
 persi_reload_zsh(){
+    # shellcheck disable=SC1090
     source ~/.zshrc
 }
 
@@ -16,6 +19,7 @@ persi_set_zsh_custom_dir(){
 }
 
 persi_get_repo_name(){
+    # shellcheck disable=SC2155
     export PERSI_GIT_REPO_NAME=`git remote -v | grep -v grep |grep -i origin | head -n 1 | awk '{print $2}' | sed 's#^https://\([^/]*\)/\([^\.]*\)#\2#g'`
     PERSI_GIT_REPO_NAME=${PERSI_GIT_REPO_NAME%.git}
     if [[ -z $PERSI_GIT_REPO_NAME ]]; then
@@ -71,6 +75,7 @@ persi_install_plugin(){
 persi_set_homebrew_remote_tsinghua(){
     read -q "PERSI_SET_HOMEBREW_REMOTE?Whether to use Homebrew Tsinghua mirror source [y/n]: "
     if [ $PERSI_SET_HOMEBREW_REMOTE = 'y' ]; then
+        # shellcheck disable=SC2092
         `git -C "$(brew --repo)" remote set-url origin https://mirrors.tuna.tsinghua.edu.cn/git/homebrew/brew.git`
         BREW_TAPS="$(brew tap)"
         for tap in core cask{,-fonts,-drivers,-versions}; do
@@ -90,6 +95,7 @@ persi_set_homebrew_remote_tsinghua(){
 persi_set_homebrew_remote_github(){
     read -q "PERSI_SET_HOMEBREW_REMOTE?Whether to use Homebrew Github mirror source [y/n]: "
     if [ $PERSI_SET_HOMEBREW_REMOTE = 'y' ]; then
+        # shellcheck disable=SC2092
         `git -C "$(brew --repo)" remote set-url origin https://github.com/Homebrew/brew.git`
         BREW_TAPS="$(brew tap)"
         for tap in core cask{,-fonts,-drivers,-versions}; do
@@ -104,6 +110,7 @@ persi_set_homebrew_remote_github(){
 }
 
 persi_drone_check_server(){
+    # shellcheck disable=SC2166
     if [ ! $DRONE_SERVER -o ! $DRONE_TOKEN ]; then
         echo -e "${CLISTART}${CLIRED} you must provide the Drone server address. ${CLIEND}"
         return 1
@@ -123,6 +130,7 @@ persi_drone_repo_enable(){
     fi
     read -q "PERSI_DRONE_ENABLE?Whether to enable the current repository to ${DRONE_SERVER} [y/n]: "
     if [ $PERSI_DRONE_ENABLE = 'y' ]; then
+        # shellcheck disable=SC2092
         `drone repo enable ${PERSI_GIT_REPO_NAME}`
         if [ $? = 0 ]; then
             echo -e "${CLISTART}${CLIDGREEN}🍺 Drone enable successfully, Repo Name: ${PERSI_GIT_REPO_NAME} to ${DRONE_SERVER}successfully.${CLIEND}"
@@ -143,6 +151,7 @@ persi_drone_repo_update_protected(){
     fi
     read -q "PERSI_DRONE_UPDATE_PROTECTED?Whether to set current repository protected to ${DRONE_SERVER} [y/n]: "
     if [ $PERSI_DRONE_UPDATE_PROTECTED = 'y' ]; then
+        # shellcheck disable=SC2092
         `drone repo update --protected ${PERSI_GIT_REPO_NAME}`
         if [ $? = 0 ]; then
             echo -e "${CLISTART}${CLIDGREEN}🍺 Drone update to protected successfully, Repo Name: ${PERSI_GIT_REPO_NAME} to ${DRONE_SERVER} successfully.${CLIEND}"
@@ -162,16 +171,18 @@ persi_drone_repo_set_config(){
         return 1
     fi
     if [ ! $1 ]; then
+        # shellcheck disable=SC2070
         if [ -n $DRONE_DEFAULT_CONFIG ]; then
             PERSI_DRONE_CONFIG=$DRONE_DEFAULT_CONFIG
             else
-            PERSI_DRONE_CONFIG='.drone.yml'    
+            PERSI_DRONE_CONFIG='.drone.yml'
         fi
     else
         PERSI_DRONE_CONFIG=$1
     fi
     read -q "PERSI_DRONE_REPO_SET_CONFIG?Whether set the current repository drone config ${PERSI_DRONE_CONFIG} [y/n]: "
     if [ $PERSI_DRONE_REPO_SET_CONFIG = 'y' ]; then
+        # shellcheck disable=SC2092
         `drone repo update --config ${PERSI_DRONE_CONFIG} ${PERSI_GIT_REPO_NAME}`
         if [ $? = 0 ]; then
             echo -e "${CLISTART}${CLIDGREEN}🍺 Drone config set successfully, Repo Name: ${PERSI_GIT_REPO_NAME} to ${PERSI_DRONE_CONFIG} successfully.${CLIEND}"
@@ -196,6 +207,7 @@ persi_drone_repo_sign(){
     fi
     read -q "PERSI_DRONE_SIGN?Whether to sign the current repository to ${PERSI_DRONE_REPO_CONFIG} [y/n]: "
     if [ $PERSI_DRONE_SIGN = 'y' ]; then
+        # shellcheck disable=SC2092
         `drone sign --save ${PERSI_GIT_REPO_NAME} ${PERSI_DRONE_REPO_CONFIG}`
         if [ $? = 0 ]; then
             echo -e "\n${CLISTART}${CLIDGREEN}🍺 Drone sign successfully, Repo Name: ${PERSI_GIT_REPO_NAME} to ${PERSI_DRONE_REPO_CONFIG} successfully.${CLIEND}"

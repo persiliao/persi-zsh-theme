@@ -1,5 +1,6 @@
 # Command Colors
 
+# shellcheck disable=SC2209
 echo=echo
 for cmd in echo /bin/echo; do
     $cmd >/dev/null 2>&1 || continue
@@ -8,6 +9,7 @@ for cmd in echo /bin/echo; do
         break
     fi
 done
+# shellcheck disable=SC2155
 export CLISTART=$($echo -e "\033[")
 export CLIEND="${CLISTART}0m"
 export CLIDGREEN="${CLISTART}32m"
@@ -26,6 +28,7 @@ export CLIMSG="$CLICYAN"
 function showSuccessMessage()
 {
     local message=$1
+    # shellcheck disable=SC2070
     if [ -n ${message} ]; then
         echo -e "${CLISTART}${CLISUCCESS}${message}${CLIEND}"
     fi
@@ -34,6 +37,7 @@ function showSuccessMessage()
 function showFailureMessage()
 {
     local message=$1
+    # shellcheck disable=SC2070
     if [ -n ${message} ]; then
         echo -e "${CLISTART}${CLIFAILURE}${message}${CLIEND}"
     fi

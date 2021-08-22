@@ -15,6 +15,7 @@ alias -s bz2='tar -xjvf'
 
 function persi_lg()
 {
+    # shellcheck disable=SC2010
     ls -alhF|grep -v grep |grep -i $1
 }
 
@@ -158,7 +159,7 @@ function persi_ubuntu_set_mirrors()
         sed -i s/archive.ubuntu.com/mirrors.cloud.tencent.com/g /etc/apt/sources.list
         seted=1
     fi
-    if [ $seted=1 ]; then
+    if [ $seted = 1 ]; then
         apt clean all
         apt update
     fi
@@ -250,7 +251,7 @@ function dockerExec()
     local execCommand=$2
     if [ -z ${container} ]; then
         showFailureMessage "Please select the container to be operated"
-        return 
+        return
     fi
     if [ -z ${workDir} ]; then
         workDir='/root/'

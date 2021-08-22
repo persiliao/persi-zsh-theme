@@ -8,17 +8,17 @@ persi_pwd() {
     if [[ $PERSI_PWD == '~' ]]; then
     else
         PERSI_PWD=${PERSI_PWD##*/}
-    fi    
+    fi
     echo $PERSI_PWD
 }
 
 persi_user(){
     local PERSI_USER=${USER}
-    if [[ $PERSI_USER == "root" ]]; then
+    if [ $PERSI_USER = "root" ]; then
         echo "%{$fg[red]%} # %{$reset_color%}"
     else
         echo "%{$fg[black]%} $ %{$reset_color%}"
-    fi    
+    fi
 }
 
 persi_hostname(){
