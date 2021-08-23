@@ -23,6 +23,35 @@ $ ./install_persi.zsh
 $ source ~/.zshrc
 ```
 
+## Alias Commands
+
+#### git
+
+- **gcmsg** git commit -m 
+
+- **gacmsg** git add . && git commit -m
+
+- **gacp** git add . && git commit -m message && git pull origin current branch && git push origin current branch
+
+- **gsa** git submodule add
+
+- **gsui** git submodule update --init --recursive
+
+- **gsurm** git submodule update --recursive --remote --merge
+
+- **ggplsurm** git pull origin $(git_main_branch) && git submodule update --recursive --remote --merge
+
+- **ggpushall** git push all remote
+
+  
+
+#### system
+
+- **showCPUTopProcess** Display the top 10 that the system occupies the most CPU
+- **showMemoryTopProcess** Display the top 10 that the system occupies the most Memory
+
+  
+
 ## Preview
 ![Preview](/screenshot.png)
 

@@ -85,6 +85,11 @@ function persi_gcmsg()
     git commit -m "${*}"
 }
 
+function persi_gcmsgcp()
+{
+    git commit -m "Code optimization"
+}
+
 function persi_gitPushAll()
 {
     git remote -v|grep push|awk '{print $1}'|xargs -t -n 1 git push
@@ -101,10 +106,11 @@ alias gsui='git submodule update --init --recursive'
 alias gsurm='git submodule update --recursive --remote --merge'
 alias ggplsurm='git pull origin $(git_main_branch) && git submodule update --recursive --remote --merge'
 alias gcmsg='persi_gcmsg'
+alias gcmsgcp='persi_gcmsgcp'
 alias gacmsg='persi_gacmsg'
 alias gacsp='persi_gacsp'
 alias gacp='persi_gacp'
-alias gpushall='persi_gitPushAll'
+alias ggpushall='persi_gitPushAll'
 
 # System
 function persi_showMemoryTopProcess()
