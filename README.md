@@ -4,11 +4,6 @@
 
 ---
 
-## Features [Optional]
-
-- added plugin zsh_reload wd git gitignore git-flow git-flow-avh docker npm node golang wp-cli composer yarn
-- Some commonly used aliases
-
 ## Require
 
 - zsh
