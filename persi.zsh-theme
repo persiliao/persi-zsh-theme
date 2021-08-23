@@ -5,7 +5,7 @@ persi_check_dir_writable() {
 }
 persi_pwd() {
     local PERSI_PWD=${PWD/#$HOME/'~'}
-    if [ $PERSI_PWD = '~' ]; then
+    if [[ $PERSI_PWD == '~' ]]; then
     else
         PERSI_PWD=${PERSI_PWD##*/}
     fi
@@ -14,7 +14,7 @@ persi_pwd() {
 
 persi_user(){
     local PERSI_USER=${USER}
-    if [ $PERSI_USER = "root" ]; then
+    if [[ $PERSI_USER == "root" ]]; then
         echo "%{$fg[red]%} # %{$reset_color%}"
     else
         echo "%{$fg[black]%} $ %{$reset_color%}"
