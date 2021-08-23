@@ -158,9 +158,10 @@ function persi_tail_f_n()
     tail -n 100 -F $1
 }
 
-function persi_setHttpProxy()
+function persi_setHttpV2rayProxy()
 {
-    
+    export http_proxy=http://127.0.0.1:1087
+    export https_proxy=http://127.0.0.1:1087
 }
 
 alias showSystemVersion='persi_showSystemVersion'
@@ -168,6 +169,10 @@ alias showPath='echo $PATH'
 alias showMemoryTopProcess='persi_showMemoryTopProcess'
 alias showCPUTopProcess='persi_showCPUTopProcess'
 alias tf='persi_tail_f_n'
+
+# Proxy
+alias setHttpV2rayProxy='persi_setHttpV2rayProxy'
+alias unsetHttpProxy='unset http_proxy && unset https_proxy'
 
 # Ubuntu
 function persi_ubuntu_set_mirrors()
@@ -196,7 +201,7 @@ function persi_ubuntu_set_mirrors()
     fi
 }
 
-alias ubtMirror='persi_ubuntu_set_mirrors'
+alias ubuntuSetAptMirror='persi_ubuntu_set_mirrors'
 
 # Python
 function persi_pip_set_tencent()
