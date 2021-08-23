@@ -22,5 +22,5 @@ if [ $? = "0" ]; then
 
     persi_reload_zsh
 
-    echo -e "${CLISTART}${CLIDGREEN}🍺 persi.zsh-theme alias command installed successfully.${CLIEND}"
+    echo -e "${CLISTART}${CLIDGREEN}🍺 persi.zsh-theme alias commands installed successfully.${CLIEND}"
 fi
