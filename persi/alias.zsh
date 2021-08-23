@@ -160,6 +160,10 @@ function persi_tail_f_n()
 
 function persi_setHttpV2rayProxy()
 {
+    local v2rayRunning=$(netstat -an|grep 127.0.0.1.1087|wc -l)
+    if [ $v2rayRunning -lt 1 ]; then
+        showFailureMessage "Please check the startup status of V2ray"
+    fi
     export http_proxy=http://127.0.0.1:1087
     export https_proxy=http://127.0.0.1:1087
 }
