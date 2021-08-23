@@ -158,6 +158,11 @@ function persi_tail_f_n()
     tail -n 100 -F $1
 }
 
+function persi_setHttpProxy()
+{
+    
+}
+
 alias showSystemVersion='persi_showSystemVersion'
 alias showPath='echo $PATH'
 alias showMemoryTopProcess='persi_showMemoryTopProcess'

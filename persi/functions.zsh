@@ -60,7 +60,7 @@ persi_install_command(){
 persi_install_plugin(){
     read -q "PERSI_INSTALL_PLUGIN?Whether to use the recommended plug-in (zsh_reload wd git gitignore git-flow git-flow-avh docker npm node golang wp-cli composer yarn systemd systemadmin ) [y/n]: "
     if [ $PERSI_INSTALL_PLUGIN = 'y' ]; then
-        PERSI_ZSH_RECOMMENDED_PLUGIN="zsh_reload wd git gitignore git-flow git-flow-avh docker npm node golang wp-cli composer yarn systemd systemadmin "
+        PERSI_ZSH_RECOMMENDED_PLUGIN="zsh_reload wd git gitignore git-flow git-flow-avh docker npm node golang wp-cli composer yarn systemd systemadmin mvn nvm pip redis-cli supervisor gradle "
         # shellcheck disable=SC2046
         persi_check_sed_is_gnu
         if [ $PERSI_SED_IS_GNU = "1" ]; then
