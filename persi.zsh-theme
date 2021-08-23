@@ -1,5 +1,5 @@
 persi_check_dir_writable() {
-    if [ ! -w "$PWD" ]; then
+    if [[ ! -w "$PWD" ]]; then
         echo " "🔐
     fi
 }
