@@ -131,6 +131,17 @@ function persi_showCPUTopProcess()
     ps -ef | sort -k3nr | head -n ${number}
 }
 
+function persi_showSystemVersion()
+{
+    if [ -f "/etc/redhat-release" ]; then
+        cat /etc/redhat-release
+    elif [ -f "/etc/issue" ]; then
+        cat /etc/issue
+    else
+        uname -a
+    fi
+}
+
 function persi_tail_f_n()
 {
     if [ ! -f $1 ]; then
@@ -140,6 +151,8 @@ function persi_tail_f_n()
     tail -n 100 -F $1
 }
 
+alias showSystemVersion='persi_showSystemVersion'
+alias showPath='echo $PATH'
 alias showMemoryTopProcess='persi_showMemoryTopProcess'
 alias showCPUTopProcess='persi_showCPUTopProcess'
 alias tf='persi_tail_f_n'
