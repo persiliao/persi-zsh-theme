@@ -75,6 +75,11 @@ function persi_gacmsg()
     git add . && git commit -m "${*}"
 }
 
+function persi_gacmsgcp()
+{
+    git add . && git commit -m "Code optimization"
+}
+
 function persi_gcmsg()
 {
     local message=$1
@@ -108,6 +113,7 @@ alias ggplsurm='git pull origin $(git_main_branch) && git submodule update --rec
 alias gcmsg='persi_gcmsg'
 alias gcmsgcp='persi_gcmsgcp'
 alias gacmsg='persi_gacmsg'
+alias gacmsgcp='persi_gacmsgcp'
 alias gacsp='persi_gacsp'
 alias gacp='persi_gacp'
 alias ggpushall='persi_gitPushAll'
