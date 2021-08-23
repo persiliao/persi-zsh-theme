@@ -7,8 +7,7 @@
 ## 特性 [可选]
 
 - 添加插件 zsh_reload wd git gitignore git-flow git-flow-avh docker npm node golang wp-cli composer yarn
-- Homebrew 使用清华镜像源
-- 一些常用的Alias
+- 一些常用的Alias Commands
 
 ## 依赖
 

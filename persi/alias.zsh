@@ -31,7 +31,7 @@ function persi_netpg()
 
 # Zsh
 alias tczero="truncate -s 0"
-alias ztczhistory="truncate -s 0 ~/.zsh_history"
+alias tczhistory="truncate -s 0 ~/.zsh_history"
 alias ll="ls -alhF"
 alias lg="persi_lg"
 alias pg='persi_pg'
@@ -107,7 +107,7 @@ alias gacp='persi_gacp'
 alias gpushall='persi_gitPushAll'
 
 # System
-function showMemoryTopProcess()
+function persi_showMemoryTopProcess()
 {
     local number=$1
     if [ -z ${number} ]; then
@@ -116,7 +116,7 @@ function showMemoryTopProcess()
     ps -ef|sort -k4nr|head -n ${number}
 }
 
-function showCPUTopProcess()
+function persi_showCPUTopProcess()
 {
     local number=$1
     if [ -z ${number} ]; then
@@ -134,8 +134,8 @@ function persi_tail_f_n()
     tail -n 100 -F $1
 }
 
-alias showMemoryTopProcess='showMemoryTopProcess'
-alias showCPUTopProcess='showCPUTopProcess'
+alias showMemoryTopProcess='persi_showMemoryTopProcess'
+alias showCPUTopProcess='persi_showCPUTopProcess'
 alias tf='persi_tail_f_n'
 
 # Ubuntu
@@ -244,7 +244,7 @@ alias hyperfGenProcess="./bin/hyperf.php gen:process"
 alias hyperfVendorPublish="./bin/hyperf.php vendor:publish"
 
 # Docker
-function dockerExec()
+function persi_dockerExec()
 {
     local container=$1
     local workDir=$3
@@ -259,13 +259,13 @@ function dockerExec()
     if [ -z ${execCommand} ]; then
         execCommand='/bin/bash'
     fi
-    docker exec -ti -w ${workDir} ${container} ${execCommand}
+    docker exec -t -i -w ${workDir} ${container} ${execCommand}
 }
 
 alias dockerStartAll='docker start $(docker ps -a -q)'
 alias dockerStopAll='docker stop $(docker ps -a -q)'
 alias dockerRemoveAll='docker rm $(docker ps -a -q)'
-alias dockerExec='dockerExec'
+alias dockerExec='persi_dockerExec'
 
 # Drone
 alias dros='persi_drone_repo_sign'
@@ -289,7 +289,7 @@ if [ -e "/usr/local/php/var/log/php-fpm.log" ]; then
     PERSI_PHP_FPM_ERROR_LOG="/usr/local/var/log/php-fpm.log"
 fi
 
-function phpEditConfig()
+function persi_phpEditConfig()
 {
     local phpConfigPath=$(php --ini|grep php.ini |tail -n 1|awk '{printf $4}')
     if [ -z $phpConfigPath ]; then
@@ -300,7 +300,7 @@ function phpEditConfig()
 }
 
 # shellcheck disable=SC2139
-alias phpEditConfig='phpEditConfig'
+alias phpEditConfig='persi_phpEditConfig'
 # shellcheck disable=SC2139
 alias phpWatchLog="tail -n 100 -F ${PERSI_PHP_FPM_ERROR_LOG}"
 # shellcheck disable=SC2139

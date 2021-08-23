@@ -7,7 +7,6 @@
 ## Features [Optional]
 
 - added plugin zsh_reload wd git gitignore git-flow git-flow-avh docker npm node golang wp-cli composer yarn
-- Use Homebrew Tsinghua mirror source
 - Some commonly used aliases
 
 ## Require
