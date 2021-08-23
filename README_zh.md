@@ -47,7 +47,12 @@ $ source ~/.zshrc
 
 #### system
 
+- **showSystemVersion** Display system version
+
+- **showPath** Display Path
+
 - **showCPUTopProcess** Display the top 10 that the system occupies the most CPU
+
 - **showMemoryTopProcess** Display the top 10 that the system occupies the most Memory
 
 
