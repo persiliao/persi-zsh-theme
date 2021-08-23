@@ -1,4 +1,5 @@
-# Alias
+# Alias Commands
+
 # Editor
 alias -s js=vim
 alias -s c=vim

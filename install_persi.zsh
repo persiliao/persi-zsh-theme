@@ -1,6 +1,9 @@
 #!/bin/zsh
-#
-# Deploy persi zsh custom theme
+
+#Author: Persi.Liao(xiangchu.liao@gmail.com)
+#Home: https://github.com/persiliao/persi-zsh-theme
+#Description: Install persi.zsh-theme
+#Version: 1.0.0
 
 PERSI_THEME_WORK_DIRECTORY=$(dirname "$0")
 # shellcheck disable=SC2164
