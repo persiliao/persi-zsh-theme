@@ -65,17 +65,25 @@ persi_install_command(){
 }
 
 persi_install_plugin(){
-    read -q "PERSI_INSTALL_PLUGIN?Whether to use the recommended plug-in (zsh_reload wd git gitignore git-flow git-flow-avh docker npm node golang wp-cli composer yarn systemd systemadmin ) [y/n]: "
+    read -q "PERSI_INSTALL_PLUGIN?Whether to use the recommended plugins [y/n]: "
     if [ $PERSI_INSTALL_PLUGIN = 'y' ]; then
-        PERSI_ZSH_RECOMMENDED_PLUGIN="zsh_reload wd git gitignore git-flow git-flow-avh docker npm node golang wp-cli composer yarn systemd systemadmin mvn nvm pip redis-cli supervisor gradle "
+        PERSI_ZSH_RECOMMENDED_PLUGIN=(zsh_reload wd git gitignore git-flow git-flow-avh docker npm node golang wp-cli composer yarn systemd systemadmin mvn nvm pip redis-cli supervisor gradle)
+        PERSI_ZSH_PLUGINS=$(cat ~/.zshrc|grep '^plugins')
+        PERSI_ZSH_PLUGINS=${PERSI_ZSH_PLUGINS:9:${#PERSI_ZSH_PLUGINS}-10}
+        for plugin in $PERSI_ZSH_PLUGINS
+        do
+            PERSI_PLUGINS=$(echo ${PERSI_ZSH_RECOMMENDED_PLUGIN[*]} | sed 's/\<'$plugin'\>//')
+            unset PERSI_ZSH_RECOMMENDED_PLUGIN
+            PERSI_ZSH_RECOMMENDED_PLUGIN=${PERSI_PLUGINS[@]}
+        done
         # shellcheck disable=SC2046
         persi_check_sed_is_gnu
         if [ $PERSI_SED_IS_GNU = "1" ]; then
-            sed -i "s/\(^plugins=(\)\s*/\1${PERSI_ZSH_RECOMMENDED_PLUGIN}/" ~/.zshrc
+            sed -i "s/\(^plugins=(\)\s*/\1${PERSI_ZSH_RECOMMENDED_PLUGIN[*]} /" ~/.zshrc
         else
-            sed -i "" "s/\(^plugins=(\)\s*/\1${PERSI_ZSH_RECOMMENDED_PLUGIN}/" ~/.zshrc
+            sed -i "" "s/\(^plugins=(\)\s*/\1${PERSI_ZSH_RECOMMENDED_PLUGIN[*]} /" ~/.zshrc
         fi
-        echo -e "\n${CLISTART}${CLIDGREEN}🍺 plugin added ${PERSI_ZSH_RECOMMENDED_PLUGIN}${CLIEND}"
+        echo -e "\n${CLISTART}${CLIDGREEN}🍺 plugin added ${PERSI_ZSH_RECOMMENDED_PLUGIN[*]}${CLIEND}"
     fi
 }
 
