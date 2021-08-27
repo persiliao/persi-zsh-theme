@@ -24,4 +24,4 @@ persi_install_plugin
 
 persi_install_zsh_theme
 
-echo -e "${CLISTART}${CLIDGREEN}🍺 persi.zsh-theme installed successfully.${CLIEND}"
+echo -e "\n${CLISTART}${CLIDGREEN}🍺 persi.zsh-theme installed successfully.${CLIEND}"
