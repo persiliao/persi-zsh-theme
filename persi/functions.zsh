@@ -30,7 +30,7 @@ persi_get_repo_name(){
     return 0
 }
 
-persi_deploy_zsh_theme(){
+persi_activate_zsh_theme(){
     # shellcheck disable=SC2046
     persi_check_sed_is_gnu
     if [ $PERSI_SED_IS_GNU = "1" ]; then
@@ -40,9 +40,16 @@ persi_deploy_zsh_theme(){
     fi
 }
 
-persi_install_zsh_theme(){
+persi_deploy_zsh_theme(){
     cp "${PERSI_THEME_WORK_DIRECTORY}/persi.zsh-theme" "${PERSI_ZSH_CUSTOM_THEME_DIR}/persi.zsh-theme"
+}
+
+persi_install_zsh_theme(){
     persi_deploy_zsh_theme
+    read -q "PERSI_ACTIVATE_ZSH_THEME?Whether to activate persi.zsh-theme [y/n]: "
+    if [ $PERSI_ACTIVATE_ZSH_THEME = 'y' ]; then
+        persi_activate_zsh_theme
+    fi
 }
 
 persi_install_command(){
