@@ -216,6 +216,7 @@ function persi_pip_set_tencent()
     pip config set global.index-url https://mirrors.cloud.tencent.com/pypi/simple
 }
 alias pipupgradeself='python3 -m pip install --upgrade pip'
+alias pipupgrade='python3 -m pip install --upgrade'
 alias pipsetmirrortencent='persi_pip_set_tencent'
 
 # Javascript & Node
