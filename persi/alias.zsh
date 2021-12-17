@@ -39,9 +39,9 @@ alias pg='persi_pg'
 alias npg='persi_netpg'
 alias rm="rm -ri"
 # Generate rand password
-alias grand="openssl rand -hex"
-alias grand16="openssl rand -hex 16"
-alias grand32="openssl rand -hex 32"
+alias grand="openssl rand -base64"
+alias grand16="openssl rand -base64 16"
+alias grand32="openssl rand -base64 32"
 
 # Git
 function persi_gacsp()
