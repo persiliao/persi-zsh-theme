@@ -315,7 +315,7 @@ alias dros='persi_drone_repo_sign'
 
 # Mac
 alias macOsAppInstallSourceAll="sudo spctl --master-disable"
-alias ipshow="ifconfig en0 |grep inet"
+alias ipshow="ifconfig | grep 'inet 192'| awk '{ print \$2}'"
 
 # Android
 alias androidReboot="adb reboot"
