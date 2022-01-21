@@ -6,7 +6,7 @@ alias -s c=vim
 alias -s java=vim
 alias -s txt=vim
 alias -s log=vim
-# alias -s php=vim
+alias -s php=vim
 alias -s gz='tar -xzvf'
 alias -s tgz='tar -xzvf'
 alias -s zip='unzip'
@@ -240,7 +240,6 @@ function persi_npm_set_mirrors()
 
 alias npmSetMirror='persi_npm_set_mirrors'
 alias npmUnsetMirror='npm config delete registry'
-alias npmRB='npm run build'
 
 # Core dump for mac
 alias coreclear="rm -rf /cores/core.*"
@@ -249,42 +248,6 @@ alias corell="ll /cores"
 # Mail
 # shellcheck disable=SC2139
 alias mailtcz="truncate -s 0 /var/mail/${USER}"
-
-# Composer
-alias crnodev="composer require --no-dev"
-alias cunodev="composer update --no-dev"
-alias cinodev="composer install --no-dev"
-alias crb='./bin/satis build ./satis.json ./build'
-
-# Hyperf
-alias hyperf="./bin/hyperf.php 2>/dev/null"
-alias hyperfStart="./bin/hyperf.php start 2>/dev/null"
-# shellcheck disable=SC2142
-alias hyperfStop="lsof -i:9501|tail -n 1|awk '{print \$2}'|xargs kill -15 2>/dev/null"
-# shellcheck disable=SC2142
-alias hyperfRestart="lsof -i:9501|tail -n 1|awk '{print \$2}'|xargs kill -15 && ./bin/hyperf.php start 2>/dev/null"
-alias hyperfOverrideProxy="./vendor/bin/init-proxy.sh 2>/dev/null"
-# shellcheck disable=SC2142
-alias hyperfOverrideProxyRestart="./vendor/bin/init-proxy.sh 2>/dev/null && lsof -i:9501|tail -n 1|awk '{print \$2}'|xargs kill -15 && ./bin/hyperf.php start 2>/dev/null"
-alias hyperfDescribeRoutes="./bin/hyperf.php describe:routes 2>/dev/null"
-alias hyperfProcessInfo="lsof -i:9501"
-# shellcheck disable=SC2142
-alias hyperfMacStopAll="ps -ef|grep -v grep|grep hyperf.php|awk '{print \$2}'|xargs kill -9 2>/dev/null"
-
-# Hyperf Generator
-alias hyperfGenCommand="./bin/hyperf.php gen:command"
-alias hyperfGenController="./bin/hyperf.php gen:controller"
-alias hyperfGenListener="./bin/hyperf.php gen:listener"
-alias hyperfGenModel="./bin/hyperf.php gen:model"
-alias hyperfGenMiddleware="./bin/hyperf.php gen:middleware"
-alias hyperfGenMigration="./bin/hyperf.php gen:migration"
-alias hyperfGenRequest="./bin/hyperf.php gen:request"
-alias hyperfGenAspect="./bin/hyperf.php gen:aspect"
-alias hyperfGenJob="./bin/hyperf.php gen:job"
-alias hyperfGenSeeder="./bin/hyperf.php gen:seeder"
-alias hyperfGenProcess="./bin/hyperf.php gen:process"
-
-alias hyperfVendorPublish="./bin/hyperf.php vendor:publish"
 
 # Docker
 function persi_dockerExec()
