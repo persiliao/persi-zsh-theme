@@ -25,36 +25,19 @@ $ source ~/.zshrc
 
 ## Alias Commands
 
-#### git
-
-- **gcmsg** git commit -m 
-
-- **gacmsg** git add . && git commit -m
-
-- **gacp** git add . && git commit -m message && git pull origin current branch && git push origin current branch
-
-- **gsa** git submodule add
-
-- **gsui** git submodule update --init --recursive
-
-- **gsurm** git submodule update --recursive --remote --merge
-
-- **ggplsurm** git pull origin $(git_main_branch) && git submodule update --recursive --remote --merge
-
-- **ggpushall** git push all remote
+| Alias      | Command                                              | Example                   |
+|:-----------|:-----------------------------------------------------|:--------------------------|
+| `gcmsg`    | `git commit -m`                                      | `gcmsg Updated README.md` |
+| `gacmsg`   | `git add . && git commit -m`                         | `gacmsg Add new feature`  |
+| `gsurm`    | `git submodule update --recursive --remote --merge`  |                           |
 
 
-
-#### system
-
-- **showSystemVersion** Display system version
-
-- **showPath** Display Path
-
-- **showCPUTopProcess** Display the top 10 that the system occupies the most CPU
-
-- **showMemoryTopProcess** Display the top 10 that the system occupies the most Memory
-
+| Alias                   | Example                                                        |
+|:------------------------|:---------------------------------------------------------------|
+| `showSystemVersion`     | `Display system version`                                       |
+| `showPath`              | `Display Path`                                                 |
+| `showCPUTopProcess`     | `Display the top 10 that the system occupies the most CPU`     |
+| `showMemoryTopProcess`  | `Display the top 10 that the system occupies the most Memory`  |
 
 ## 效果预览
 ![效果预览](/screenshot.png)
