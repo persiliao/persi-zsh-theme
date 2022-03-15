@@ -30,6 +30,16 @@ function persi_netpg()
     netstat -an|grep -v grep|grep -i $1
 }
 
+function killProcessByLocalPort()
+{
+    local persi_process_port=$1
+    # shellcheck disable=SC2155
+    local persi_process_pid=`lsof -i:${persi_process_port} |grep LISTEN|awk '{print $2}'`
+    # shellcheck disable=SC2046
+    # shellcheck disable=SC2092
+    `sudo /bin/kill -9 ${persi_process_pid}`
+}
+
 # Zsh
 alias tczero="truncate -s 0"
 alias tczhistory="truncate -s 0 ~/.zsh_history"
@@ -42,6 +52,8 @@ alias rm="rm -ri"
 alias grand="openssl rand -base64"
 alias grand16="openssl rand -base64 16"
 alias grand32="openssl rand -base64 32"
+# Spring X
+alias springxStop='killProcessByLocalPort 8761'
 
 # Git
 function persi_gacsp()
@@ -160,6 +172,7 @@ function persi_tail_f_n()
 
 function persi_setHttpV2rayProxy()
 {
+    # shellcheck disable=SC2155
     local v2rayRunning=$(netstat -an|grep 127.0.0.1.1087|wc -l)
     if [ $v2rayRunning -lt 1 ]; then
         showFailureMessage "Please check the startup status of V2ray"
@@ -278,7 +291,6 @@ alias dros='persi_drone_repo_sign'
 
 # Mac
 alias macOsAppInstallSourceAll="sudo spctl --master-disable"
-alias ipshow="ifconfig | grep 'inet 192'| awk '{ print \$2}'"
 
 # Android
 alias androidReboot="adb reboot"
