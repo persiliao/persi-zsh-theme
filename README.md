@@ -35,7 +35,8 @@ $ source ~/.zshrc
 | `showMemoryTopProcess`  | `Display the top 10 that the system occupies the most Memory`  |
 
 ## Preview
-![Preview](/screenshot.png)
+
+![Preview](screenshot.png)
 
 ## License
 
