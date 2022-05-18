@@ -103,6 +103,16 @@ function persi_gcmsg()
     git commit -m "${*}"
 }
 
+function persi_gacmsgd()
+{
+    local message=$1
+    if [[ -z ${message} ]]; then
+        showFailureMessage "Aborting commit due to empty commit message"
+        return
+    fi
+    git commit --amend -m "${*}"
+}
+
 function persi_gcmsgcp()
 {
     git commit -m "Code optimization"
@@ -124,6 +134,7 @@ alias gsui='git submodule update --init --recursive'
 alias gsurm='git submodule update --recursive --remote --merge'
 alias ggplsurm='git pull origin $(git_main_branch) && git submodule update --recursive --remote --merge'
 alias gcmsg='persi_gcmsg'
+alias gcmsgd='persi_gacmsgd'
 alias gcmsgcp='persi_gcmsgcp'
 alias gacmsg='persi_gacmsg'
 alias gacmsgcp='persi_gacmsgcp'

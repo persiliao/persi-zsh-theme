@@ -25,11 +25,12 @@ $ source ~/.zshrc
 
 ## Alias Commands
 
-| Alias      | Command                                              | Example                   |
-|:-----------|:-----------------------------------------------------|:--------------------------|
-| `gcmsg`    | `git commit -m`                                      | `gcmsg Updated README.md` |
-| `gacmsg`   | `git add . && git commit -m`                         | `gacmsg Add new feature`  |
-| `gsurm`    | `git submodule update --recursive --remote --merge`  |                           |
+| Alias      | Command                                             | Example                              |
+|:-----------|:----------------------------------------------------|:-------------------------------------|
+| `gcmsg`    | `git commit -m`                                     | `gcmsg Updated README.md`            |
+| `gcmsgd`   | `git commit --amend -m`                             | `gcmsgd Modify last commit message`  |
+| `gacmsg`   | `git add . && git commit -m`                        | `gacmsg Add new feature`             |
+| `gsurm`    | `git submodule update --recursive --remote --merge` |                                      |
 
 
 | Alias                   | Example                                                        |
