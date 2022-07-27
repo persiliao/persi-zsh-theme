@@ -52,8 +52,6 @@ alias rm="rm -ri"
 alias grand="openssl rand -base64"
 alias grand16="openssl rand -base64 16"
 alias grand32="openssl rand -base64 32"
-# Spring X
-alias springxStop='killProcessByLocalPort 8761'
 
 # Git
 function persi_gacsp()
