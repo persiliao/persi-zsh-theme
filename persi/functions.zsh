@@ -67,7 +67,7 @@ persi_install_command(){
 persi_install_plugin(){
     read -q "PERSI_INSTALL_PLUGIN?Whether to use the recommended plugins [y/n]: "
     if [ $PERSI_INSTALL_PLUGIN = 'y' ]; then
-        PERSI_ZSH_RECOMMENDED_PLUGIN=(wd git gitignore git-flow git-flow-avh docker docker-compose kubectl npm node npx golang wp-cli composer yarn systemd systemadmin mvn nvm pip redis-cli supervisor gradle)
+        PERSI_ZSH_RECOMMENDED_PLUGIN=(wd git gitignore git-flow git-flow-avh docker docker-compose kubectl npm node  golang wp-cli composer yarn systemd systemadmin mvn nvm pip redis-cli supervisor gradle)
         PERSI_ZSH_PLUGINS=$(cat ~/.zshrc|grep '^plugins')
         PERSI_ZSH_PLUGINS=${PERSI_ZSH_PLUGINS:9:${#PERSI_ZSH_PLUGINS}-10}
         for plugin in $PERSI_ZSH_PLUGINS
