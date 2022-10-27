@@ -366,7 +366,7 @@ function persi_acmeRenew()
         showFailureMessage "Please enter the domain name for which you want the certificate"
         return
     fi
-    acme.sh --renew -d ${domain} --force
+    /root/.acme.sh/acme.sh --renew -d ${domain} --force
 }
 
 alias acmeRenew='persi_acmeRenew'
