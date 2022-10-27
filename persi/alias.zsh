@@ -358,3 +358,15 @@ alias mysqlWatchLog="tail -n 100 -F ${MYSQL_ERROR_LOG}"
 # shellcheck disable=SC2139
 alias mysqlCleanLog="truncate -s 0 ${MYSQL_ERROR_LOG}"
 
+# Acme.sh
+function persi_acmeRenew()
+{
+    local domain=$1
+    if [ -z ${domain} ]; then
+        showFailureMessage "Please enter the domain name for which you want the certificate"
+        return
+    fi
+    acme.sh --renew -d ${domain} --force
+}
+
+alias acmeRenew='persi_acmeRenew'
