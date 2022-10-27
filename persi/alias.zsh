@@ -113,7 +113,7 @@ function persi_gacmsgd()
 
 function persi_gcmsgcp()
 {
-    git commit -m "Code optimization"
+    git commit -m "chore: Code optimization"
 }
 
 function persi_gitPushAll()
