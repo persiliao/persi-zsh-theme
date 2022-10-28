@@ -370,3 +370,6 @@ function persi_acmeRenew()
 }
 
 alias acmeRenew='persi_acmeRenew'
+
+# Systemd
+alias sc-logs='journalctl -f -u'
