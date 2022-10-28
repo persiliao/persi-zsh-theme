@@ -88,7 +88,7 @@ function persi_gacmsg()
 
 function persi_gacmsgcp()
 {
-    git add . && git commit -m "Code optimization"
+    git add . && git commit -m "chore: Code optimization"
 }
 
 function persi_gcmsg()
