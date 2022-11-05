@@ -29,7 +29,7 @@ function showSuccessMessage()
 {
     local message=$1
     # shellcheck disable=SC2070
-    if [ -n ${message} ]; then
+    if [ -n "${message}" ]; then
         echo -e "${CLISTART}${CLISUCCESS}${message}${CLIEND}"
     fi
 }
@@ -38,7 +38,7 @@ function showFailureMessage()
 {
     local message=$1
     # shellcheck disable=SC2070
-    if [ -n ${message} ]; then
+    if [ -n "${message}" ]; then
         echo -e "${CLISTART}${CLIFAILURE}${message}${CLIEND}"
     fi
 }

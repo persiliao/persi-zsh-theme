@@ -17,27 +17,27 @@ alias -s bz2='tar -xjvf'
 function persi_lg()
 {
     # shellcheck disable=SC2010
-    ls -alhF|grep -v grep |grep -i $1
+    ls -alhF|grep -v grep |grep -i "$1"
 }
 
 function persi_pg()
 {
-    ps -ef|grep -v grep |grep -i $1
+    ps -ef|grep -v grep |grep -i "$1"
 }
 
 function persi_netpg()
 {
-    netstat -an|grep -v grep|grep -i $1
+    netstat -an|grep -v grep|grep -i "$1"
 }
 
 function killProcessByLocalPort()
 {
     local persi_process_port=$1
     # shellcheck disable=SC2155
-    local persi_process_pid=`lsof -i:${persi_process_port} |grep LISTEN|awk '{print $2}'`
+    local persi_process_pid=$(lsof -i:${persi_process_port} |grep LISTEN|awk '{print $2}')
     # shellcheck disable=SC2046
     # shellcheck disable=SC2092
-    `sudo /bin/kill -9 ${persi_process_pid}`
+    sudo /bin/kill -9 "${persi_process_pid}"
 }
 
 # Zsh
@@ -62,24 +62,24 @@ function persi_gacsp()
         return
     fi
     local branch=$(git_current_branch)
-    git add . && git commit -m "${*}" && git pull origin ${branch} && git submodule update --recursive --remote --merge && git add . && git commit -m "${*}" && git push origin ${branch}
+    git add . && git commit -m "${*}" && git pull origin "${branch}" && git submodule update --recursive --remote --merge && git add . && git commit -m "${*}" && git push origin "${branch}"
 }
 
 function persi_gacp()
 {
     local message=$1
-    if [[ -z ${message} ]]; then
+    if [ -z "${message}" ]; then
         showFailureMessage "Aborting commit due to empty commit message"
         return
     fi
-    local branch=$(git_current_branch)
-    git add . && git commit -m "${*}" && git pull origin ${branch} && git push origin ${branch}
+    branch=$(git_current_branch)
+    git add . && git commit -m "${*}" && git pull origin "${branch}" && git push origin "${branch}"
 }
 
 function persi_gacmsg()
 {
     local message=$1
-    if [[ -z ${message} ]]; then
+    if [ -z "${message}" ]; then
         showFailureMessage "Aborting commit due to empty commit message"
         return
     fi
@@ -94,7 +94,7 @@ function persi_gacmsgcp()
 function persi_gcmsg()
 {
     local message=$1
-    if [[ -z ${message} ]]; then
+    if [ -z "${message}" ]; then
         showFailureMessage "Aborting commit due to empty commit message"
         return
     fi
@@ -104,7 +104,7 @@ function persi_gcmsg()
 function persi_gacmsgd()
 {
     local message=$1
-    if [[ -z ${message} ]]; then
+    if [ -z "${message}" ]; then
         showFailureMessage "Aborting commit due to empty commit message"
         return
     fi
@@ -144,7 +144,7 @@ alias ggpushall='persi_gitPushAll'
 function persi_showMemoryTopProcess()
 {
     local number=$1
-    if [ -z ${number} ]; then
+    if [ -z "${number}" ]; then
         number=10
     fi
     ps -ef|sort -k4nr|head -n ${number}
@@ -153,7 +153,7 @@ function persi_showMemoryTopProcess()
 function persi_showCPUTopProcess()
 {
     local number=$1
-    if [ -z ${number} ]; then
+    if [ -z "${number}" ]; then
         number=10
     fi
     ps -ef | sort -k3nr | head -n ${number}
@@ -172,19 +172,18 @@ function persi_showSystemVersion()
 
 function persi_tail_f_n()
 {
-    if [ ! -f $1 ]; then
+    if [ ! -f "$1" ]; then
         showFailureMessage "File ${1} does not exists"
         return 1
     fi
-    tail -n 100 -F $1
+    tail -n 100 -F "$1"
 }
 
 function persi_setHttpV2rayProxy()
 {
-    # shellcheck disable=SC2155
-    local v2rayRunning=$(netstat -an|grep 127.0.0.1.1087|wc -l)
-    if [ $v2rayRunning -lt 1 ]; then
-        showFailureMessage "Please check the startup status of V2ray"
+    local v2rayRunning=$(netstat -an|grep -c 127.0.0.1.1087)
+    if [ "$v2rayRunning" -lt 1 ]; then
+        showFailureMessage "Please check the startup status of V2ray."
         return 1
     fi
     export http_proxy=http://127.0.0.1:1087
@@ -210,16 +209,16 @@ function persi_ubuntu_set_mirrors()
         return 1
     fi
     local mirror=$1
-    if [ -z $mirror ]; then
+    if [ -z "$mirror" ]; then
         showFailureMessage "Please select the mirror to be operated"
         return 1
     fi
     local seted=0
-    if [ $mirror = 'aliyun' ]; then
+    if [ "$mirror" = 'aliyun' ]; then
         sed -i s/archive.ubuntu.com/mirrors.aliyun.com/g /etc/apt/sources.list
         seted=1
     fi
-    if [ $mirror = 'tencent' ]; then
+    if [ "$mirror" = 'tencent' ]; then
         sed -i s/archive.ubuntu.com/mirrors.cloud.tencent.com/g /etc/apt/sources.list
         seted=1
     fi
@@ -245,18 +244,18 @@ alias pipsetmirrortencent='persi_pip_set_tencent'
 function persi_npm_set_mirrors()
 {
     local mirror=$1
-    if [ -z $mirror ]; then
+    if [ -z "$mirror" ]; then
         showFailureMessage "Please select the mirror to be operated, e:tencent,aliyun"
         return 1
     fi
     local seted=0
-    if [ $mirror = 'aliyun' ]; then
+    if [ "$mirror" = 'aliyun' ]; then
         npm config set registry https://registry.npm.taobao.org/
         showSuccessMessage 'npm set mirror successfully. https://registry.npm.taobao.org'
     fi
-    if [ $mirror = 'tencent' ]; then
+    if [ "$mirror" = 'tencent' ]; then
         npm config set registry https://mirrors.cloud.tencent.com/npm/
-        showSuccessMessage 'npm mirror successfully. https://mirrors.cloud.tencent.com/npm'
+        showSuccessMessage 'npm set mirror successfully. https://mirrors.cloud.tencent.com/npm'
     fi
 }
 
@@ -318,12 +317,14 @@ fi
 
 function persi_phpEditConfig()
 {
+    # shellcheck disable=SC2155
     local phpConfigPath=$(php --ini|grep php.ini |tail -n 1|awk '{printf $4}')
-    if [ -z $phpConfigPath ]; then
+
+    if [ -z "${phpConfigPath}" ]; then
         showFailureMessage "php.ini not found !"
         return
     fi
-    vim ${phpConfigPath}
+    vim "${phpConfigPath}"
 }
 
 # shellcheck disable=SC2139
@@ -362,11 +363,11 @@ alias mysqlCleanLog="truncate -s 0 ${MYSQL_ERROR_LOG}"
 function persi_acmeRenew()
 {
     local domain=$1
-    if [ -z ${domain} ]; then
+    if [ -z "${domain}" ]; then
         showFailureMessage "Please enter the domain name for which you want the certificate"
         return
     fi
-    /root/.acme.sh/acme.sh --renew -d ${domain} --force
+    /root/.acme.sh/acme.sh --renew -d "${domain}" --force
 }
 
 alias acmeRenew='persi_acmeRenew'
