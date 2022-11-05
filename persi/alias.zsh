@@ -1,3 +1,5 @@
+#!/bin/zsh
+
 # Alias Commands
 
 # Editor
@@ -34,7 +36,7 @@ function killProcessByLocalPort()
 {
     local persi_process_port=$1
     # shellcheck disable=SC2155
-    local persi_process_pid=$(lsof -i:${persi_process_port} |grep LISTEN|awk '{print $2}')
+    local persi_process_pid=$(lsof -i:"${persi_process_port}" |grep LISTEN|awk '{print $2}')
     # shellcheck disable=SC2046
     # shellcheck disable=SC2092
     sudo /bin/kill -9 "${persi_process_pid}"
@@ -48,6 +50,7 @@ alias lg="persi_lg"
 alias pg='persi_pg'
 alias npg='persi_netpg'
 alias rm="rm -ri"
+
 # Generate rand password
 alias grand="openssl rand -base64"
 alias grand16="openssl rand -base64 16"
@@ -88,7 +91,7 @@ function persi_gacmsg()
 
 function persi_gacmsgcp()
 {
-    git add . && git commit -m "chore: Code optimization"
+    git add . && git commit -m "refactor: Code optimization"
 }
 
 function persi_gcmsg()
@@ -113,7 +116,7 @@ function persi_gacmsgd()
 
 function persi_gcmsgcp()
 {
-    git commit -m "chore: Code optimization"
+    git commit -m "refactor: Code optimization"
 }
 
 function persi_gitPushAll()
@@ -176,7 +179,11 @@ function persi_tail_f_n()
         showFailureMessage "File ${1} does not exists"
         return 1
     fi
-    tail -n 100 -F "$1"
+    lines=$2
+    if [ -n "${lines}" ]; then
+      lines=100
+    fi
+    tail -n "${lines}" -F "$1"
 }
 
 function persi_setHttpV2rayProxy()
@@ -276,17 +283,17 @@ function persi_dockerExec()
     local container=$1
     local workDir=$3
     local execCommand=$2
-    if [ -z ${container} ]; then
+    if [ -z "${container}" ]; then
         showFailureMessage "Please select the container to be operated"
         return
     fi
-    if [ -z ${workDir} ]; then
+    if [ -z "${workDir}" ]; then
         workDir='/root/'
     fi
-    if [ -z ${execCommand} ]; then
+    if [ -z "${execCommand}" ]; then
         execCommand='/bin/bash'
     fi
-    docker exec -t -i -w ${workDir} ${container} ${execCommand}
+    docker exec -t -i -w "${workDir}" "${container}" "${execCommand}"
 }
 
 alias dockerStartAll='docker start $(docker ps -a -q)'
@@ -362,6 +369,7 @@ alias mysqlCleanLog="truncate -s 0 ${MYSQL_ERROR_LOG}"
 # Acme.sh
 function persi_acmeRenew()
 {
+
     local domain=$1
     if [ -z "${domain}" ]; then
         showFailureMessage "Please enter the domain name for which you want the certificate"

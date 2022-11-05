@@ -1,3 +1,5 @@
+#!/bin/zsh
+
 # Command Colors
 
 # shellcheck disable=SC2209
