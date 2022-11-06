@@ -19,12 +19,12 @@ alias -s bz2='tar -xjvf'
 function persi_lg()
 {
     # shellcheck disable=SC2010
-    ls -alhF|grep -v grep |grep -i "$1"
+    ls -alhF|grep -i "$1"
 }
 
 function persi_pg()
 {
-    ps -ef|grep -v grep |grep -i "$1"
+    pgrep "$1"
 }
 
 function persi_netpg()
@@ -32,15 +32,14 @@ function persi_netpg()
     netstat -an|grep -v grep|grep -i "$1"
 }
 
-function killProcessByLocalPort()
-{
-    local persi_process_port=$1
-    # shellcheck disable=SC2155
-    local persi_process_pid=$(lsof -i:"${persi_process_port}" |grep LISTEN|awk '{print $2}')
-    # shellcheck disable=SC2046
-    # shellcheck disable=SC2092
-    sudo /bin/kill -9 "${persi_process_pid}"
-}
+#function killProcessByLocalPort()
+#{
+#    local persi_process_port=$1
+#
+#    local persi_process_pid=$(lsof -i:"${persi_process_port}" |grep LISTEN|awk '{print $2}')
+#
+#    sudo /bin/kill -9 "${persi_process_pid}"
+#}
 
 # Zsh
 alias tczero="truncate -s 0"
@@ -60,10 +59,11 @@ alias grand32="openssl rand -base64 32"
 function persi_gacsp()
 {
     local message=$1
-    if [[ -z ${message} ]]; then
+    if [ -z "${message}" ]; then
         showFailureMessage "Aborting commit due to empty commit message"
-        return
+        return 1
     fi
+    # shellcheck disable=SC2155
     local branch=$(git_current_branch)
     git add . && git commit -m "${*}" && git pull origin "${branch}" && git submodule update --recursive --remote --merge && git add . && git commit -m "${*}" && git push origin "${branch}"
 }
@@ -73,7 +73,7 @@ function persi_gacp()
     local message=$1
     if [ -z "${message}" ]; then
         showFailureMessage "Aborting commit due to empty commit message"
-        return
+        return 1
     fi
     branch=$(git_current_branch)
     git add . && git commit -m "${*}" && git pull origin "${branch}" && git push origin "${branch}"
@@ -84,7 +84,7 @@ function persi_gacmsg()
     local message=$1
     if [ -z "${message}" ]; then
         showFailureMessage "Aborting commit due to empty commit message"
-        return
+        return 1
     fi
     git add . && git commit -m "${*}"
 }
@@ -188,6 +188,7 @@ function persi_tail_f_n()
 
 function persi_setHttpV2rayProxy()
 {
+    # shellcheck disable=SC2155
     local v2rayRunning=$(netstat -an|grep -c 127.0.0.1.1087)
     if [ "$v2rayRunning" -lt 1 ]; then
         showFailureMessage "Please check the startup status of V2ray."
@@ -278,7 +279,7 @@ alias corell="ll /cores"
 alias mailtcz="truncate -s 0 /var/mail/${USER}"
 
 # Docker
-function persi_dockerExec()
+function persi_docker_exec()
 {
     local container=$1
     local workDir=$3
@@ -299,7 +300,7 @@ function persi_dockerExec()
 alias dockerStartAll='docker start $(docker ps -a -q)'
 alias dockerStopAll='docker stop $(docker ps -a -q)'
 alias dockerRemoveAll='docker rm $(docker ps -a -q)'
-alias dockerExec='persi_dockerExec'
+alias dockerExec='persi_docker_exec'
 
 # Drone
 alias dros='persi_drone_repo_sign'
@@ -367,9 +368,8 @@ alias mysqlWatchLog="tail -n 100 -F ${MYSQL_ERROR_LOG}"
 alias mysqlCleanLog="truncate -s 0 ${MYSQL_ERROR_LOG}"
 
 # Acme.sh
-function persi_acmeRenew()
+function persi_acme_renew()
 {
-
     local domain=$1
     if [ -z "${domain}" ]; then
         showFailureMessage "Please enter the domain name for which you want the certificate"
@@ -378,7 +378,7 @@ function persi_acmeRenew()
     /root/.acme.sh/acme.sh --renew -d "${domain}" --force
 }
 
-alias acmeRenew='persi_acmeRenew'
+alias acmeRenew='persi_acme_renew'
 
 # Systemd
 alias sc-logs='journalctl -f -u'
