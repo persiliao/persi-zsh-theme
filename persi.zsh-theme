@@ -24,14 +24,14 @@ prompt_hostname(){
     echo $(hostname)
 }
 
-local ret_status="%(:%{$fg[green]%}@%{$fg[red]%}:)"
-PROMPT='%{$fg[magenta]%}$(id -u -n)@$(prompt_hostname)%{$reset_color%}%{$fg[blue]%}${ret_status}%{$fg[FF5765]%}@%{$fg_bold[green]%}$(prompt_pwd)$(prompt_writable)%{$reset_color%}$(git_prompt_info)%{$reset_color%}$(prompt_user_identifier)%{$reset_color%}'
+#local ret_status="%(:%{$fg[green]%}@%{$fg[red]%}:)"
+PROMPT='%{$fg[magenta]%}$(id -u -n)@$(prompt_hostname)%{$reset_color%}%{$fg_bold[blue]%}➧%{$reset_color%}%{$fg_bold[green]%}$(prompt_pwd)$(prompt_writable)%{$reset_color%}$(git_prompt_info)%{$reset_color%}$(prompt_user_identifier)%{$reset_color%}'
 
 ZSH_THEME_GIT_PROMPT_PREFIX=" ⚡️ %{$fg[magenta]%}"
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_DIRTY=" "💥
+ZSH_THEME_GIT_PROMPT_DIRTY=" 💥%{$reset_color%}"
 ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$fg[green]%}?%{$reset_color%}"
-ZSH_THEME_GIT_PROMPT_CLEAN=" "💫
+ZSH_THEME_GIT_PROMPT_CLEAN=" 💫%{$reset_color%}"
 
 export CLICOLOR=1
 export LSCOLORS="exfxcxdxbxegedabagacad"
