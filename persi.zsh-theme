@@ -1,36 +1,52 @@
 prompt_writable() {
-    if [ ! -w "$PWD" ]; then
-        echo " "🔐
-    fi
+  if [ ! -w "$PWD" ]; then
+    echo " 🔐"
+  fi
 }
 
 prompt_pwd() {
-    local PERSI_PWD=${PWD/#$HOME/'~'}
-    if [ "${PERSI_PWD}" != "~" ]; then
-        PERSI_PWD=${PERSI_PWD##*/}
-    fi
-    echo ${PERSI_PWD}
+  local PERSI_PWD=${PWD/#$HOME/'~'}
+  if [ "${PERSI_PWD}" != "~" ]; then
+    PERSI_PWD=${PERSI_PWD##*/}
+  fi
+  echo "${PERSI_PWD}"
 }
 
-prompt_user_identifier(){
-    if [ "${USER}" = "root" ]; then
-        echo "%{$fg[red]%} # %{$reset_color%}"
-    else
-        echo "%{$fg[black]%} $ %{$reset_color%}"
-    fi
+prompt_user_identifier() {
+  if [ "${USER}" = "root" ]; then
+    # shellcheck disable=SC2154
+    # shellcheck disable=SC1087
+    echo "%{$fg[red]%} # %{$reset_color%}"
+  else
+    # shellcheck disable=SC2154
+    # shellcheck disable=SC1087
+    echo "%{$fg[black]%} $ %{$reset_color%}"
+  fi
 }
 
-prompt_hostname(){
-    echo $(hostname)
+prompt_user() {
+  id -u -n
 }
 
-#local ret_status="%(:%{$fg[green]%}@%{$fg[red]%}:)"
-PROMPT='%{$fg[magenta]%}$(id -u -n)@$(prompt_hostname)%{$reset_color%}%{$fg_bold[blue]%}➧%{$reset_color%}%{$fg_bold[green]%}$(prompt_pwd)$(prompt_writable)%{$reset_color%}$(git_prompt_info)%{$reset_color%}$(prompt_user_identifier)%{$reset_color%}'
+prompt_hostname() {
+  hostname
+}
 
+# shellcheck disable=SC2016
+# shellcheck disable=SC2034
+PROMPT='%{$fg[magenta]%}$(prompt_user)@$(prompt_hostname)%{$reset_color%}%{$fg_bold[blue]%}➧%{$reset_color%}%{$fg_bold[green]%}$(prompt_pwd)$(prompt_writable)%{$reset_color%}$(git_prompt_info)%{$reset_color%}$(prompt_user_identifier)%{$reset_color%}'
+
+# shellcheck disable=SC2034
+# shellcheck disable=SC1087
 ZSH_THEME_GIT_PROMPT_PREFIX=" ⚡️ %{$fg[magenta]%}"
+# shellcheck disable=SC2034
 ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
+# shellcheck disable=SC2034
 ZSH_THEME_GIT_PROMPT_DIRTY=" 💥%{$reset_color%}"
+# shellcheck disable=SC2034
+# shellcheck disable=SC1087
 ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$fg[green]%}?%{$reset_color%}"
+# shellcheck disable=SC2034
 ZSH_THEME_GIT_PROMPT_CLEAN=" 💫%{$reset_color%}"
 
 export CLICOLOR=1
