@@ -17,7 +17,7 @@
 ```sh
 $ git clone --depth=1 https://github.com/persiliao/persi-zsh-theme.git
 $ cd persi-zsh-theme
-$ ./install_persi.zsh
+$ ./install.sh
 $ omz reload
 ```
 
