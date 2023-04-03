@@ -141,7 +141,7 @@ setup_install_persi_zsh_theme() {
 }
 
 setup_install_recommended_plugin() {
-  PERSI_ZSH_RECOMMENDED_PLUGINS=(wd git gitignore git-flow git-flow-avh docker docker-compose npm node golang wp-cli composer yarn systemd systemadmin mvn nvm pip redis-cli supervisor gradle)
+  PERSI_ZSH_RECOMMENDED_PLUGINS=(wd git gitignore git-flow git-flow-avh gh docker docker-compose kubectl npm node golang wp-cli composer yarn systemd systemadmin mvn mvnd nvm pip redis-cli supervisor gradle flutter brew rust jenv)
   # shellcheck disable=SC2128
   fmt_tips "Do you want to use the recommended plugins (Default: ${PERSI_ZSH_RECOMMENDED_PLUGINS})? [Y/n] "
   read -r opt
