@@ -29,12 +29,12 @@ prompt_user() {
 }
 
 prompt_hostname() {
-  hostname
+  hostname -s
 }
 
 # shellcheck disable=SC2016
 # shellcheck disable=SC2034
-PROMPT='%{$fg[magenta]%}$(prompt_user)@$(prompt_hostname)%{$reset_color%}%{$fg_bold[blue]%}➧%{$reset_color%}%{$fg_bold[green]%}$(prompt_pwd)$(prompt_writable)%{$reset_color%}$(git_prompt_info)%{$reset_color%}$(prompt_user_identifier)%{$reset_color%}'
+PROMPT='%{$fg[magenta]%}$(prompt_user)%{$reset_color%}%{$fg_bold[green]%}@%{$reset_color%}%{$fg[magenta]%}$(prompt_hostname)%{$reset_color%}%{$fg_bold[blue]%}➧%{$reset_color%}%{$fg_bold[green]%}$(prompt_pwd)$(prompt_writable)%{$reset_color%}$(git_prompt_info)%{$reset_color%}$(prompt_user_identifier)%{$reset_color%}'
 
 # shellcheck disable=SC2034
 # shellcheck disable=SC1087
