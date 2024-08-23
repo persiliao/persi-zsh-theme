@@ -5,11 +5,12 @@ prompt_writable() {
 }
 
 prompt_pwd() {
-  local PERSI_PWD=${PWD/#$HOME/'~'}
-  if [ "${PERSI_PWD}" != "~" ]; then
-    PERSI_PWD=${PERSI_PWD##*/}
+  local PERSI_PWD=${PWD/#$HOME/'🏡️'}
+  if [ "${PERSI_PWD}" != "🏡️" ]; then
+    PERSI_PWD='📂️ '${PERSI_PWD##*/}
   fi
-  echo "${PERSI_PWD}"
+  echo -e "${PERSI_PWD}"
+  unset PERSI_PWD
 }
 
 prompt_user_identifier() {
@@ -20,21 +21,25 @@ prompt_user_identifier() {
   else
     # shellcheck disable=SC2154
     # shellcheck disable=SC1087
-    echo "%{$fg[black]%} $ %{$reset_color%}"
+    echo "%{$fg[cyan]%} $ %{$reset_color%}"
   fi
 }
 
 prompt_user() {
-  id -u -n
+  echo "%{$fg[magenta]%}$(id -u -n)%{$reset_color%}"
+}
+
+prompt_decollator() {
+  echo "%{$fg[blue]%}@%{$reset_color%}"
 }
 
 prompt_hostname() {
-  hostname -s
+  echo "%{$fg[magenta]%}$(hostname -s)%{$reset_color%} "
 }
 
 # shellcheck disable=SC2016
 # shellcheck disable=SC2034
-PROMPT='%{$fg[magenta]%}$(prompt_user)%{$reset_color%}%{$fg_bold[green]%}@%{$reset_color%}%{$fg[magenta]%}$(prompt_hostname)%{$reset_color%}%{$fg_bold[blue]%}➧%{$reset_color%}%{$fg_bold[green]%}$(prompt_pwd)$(prompt_writable)%{$reset_color%}$(git_prompt_info)%{$reset_color%}$(prompt_user_identifier)%{$reset_color%}'
+PROMPT='$(prompt_user)$(prompt_decollator)$(prompt_hostname)%{$fg_bold[green]%}$(prompt_pwd)$(prompt_writable)%{$reset_color%}$(git_prompt_info)%{$reset_color%}$(prompt_user_identifier)%{$reset_color%}'
 
 # shellcheck disable=SC2034
 # shellcheck disable=SC1087
