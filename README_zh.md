@@ -33,5 +33,3 @@ MIT License
 
 **The project has always been developed in the Idea integrated development environment under JetBrains, based on the
 free JetBrains Open Source license(s) genuine free license, I would like to express my gratitude here**
-
-![Jetbrains](https://github.com/persiliao/static-resources/blob/master/jetbrains-logos/jetbrains-variant-4.svg)
