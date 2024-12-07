@@ -2,12 +2,10 @@
 
 #Author: Persi.Liao(xiangchu.liao@gmail.com)
 #Home: https://github.com/persiliao/persi-zsh-theme
-#Description: Install persi.zsh-theme
+#Description: Install persiliao.zsh-theme
 #Version: 1.0.0
 
-set -e
-
-PERSI_THEME_DIRECTORY="$(pwd)"
+PERSILIAO_THEME_DIRECTORY="$(dirname "$(realpath "$0")")"
 
 # The [ -t 1 ] check only works when the function is not called from
 # a subshell (like in `$(...)` or `(...)`, so this hack redefines the
@@ -108,65 +106,40 @@ check_ohmyzsh() {
   fi
 }
 
-check_sed_is_gnu() {
-  if sed --version | head -1 | grep -q -c GNU ; then
-    return 0
-  else
-    return 1
-  fi
-}
-
-setup_install_persi_zsh_theme() {
-  fmt_tips "Do you want to activate persi.zsh-theme? [Y/n] "
+setup_theme() {
+  fmt_tips "Do you want to activate persiliao theme? [Y/n] "
   read -r opt
   case $opt in
-  Y*|y*|"") ;;
-  N*|n*) fmt_notice "activate persi.zsh-theme skipped."; return ;;
-  *) fmt_notice "Invalid choice. activate persi.zsh-theme skipped."; return ;;
+    Y*|y*|"") ;;
+    N*|n*) fmt_notice "Activate persiliao theme skipped."; return ;;
+    *) fmt_notice "Invalid choice. Activate persiliao theme skipped."; return ;;
   esac
 
-  cp "${PERSI_THEME_DIRECTORY}/persi.zsh-theme" "${HOME}/.oh-my-zsh/custom/themes/persi.zsh-theme"
-  if check_sed_is_gnu; then
-    sed -i 's/\(^ZSH_THEME\).*/\1="persi"/g' ~/.zshrc
-  else
-    sed -i "" 's/\(^ZSH_THEME\).*/\1="persi"/g' ~/.zshrc
+  source "$HOME/.zshrc"
+
+  # 确保环境变量已设置
+  if [ -z "$ZSH_CUSTOM" ]; then
+    fmt_notice "ZSH_CUSTOM is not set. Please check your zsh configuration."
+    return
   fi
 
-  fmt_information "🍺 persi.zsh-theme installed successfully."
-}
+  # 复制主题文件
+  cp "${PERSILIAO_THEME_DIRECTORY}/persiliao.zsh-theme" "$ZSH_CUSTOM/themes/persiliao.zsh-theme"
 
-setup_install_recommended_plugin() {
-  PERSI_ZSH_RECOMMENDED_PLUGINS=(wd git gitignore git-flow gh docker docker-compose kubectl golang composer yarn systemd systemadmin mvn pip redis-cli supervisor gradle brew rust jenv)
-  # shellcheck disable=SC2128
-  fmt_tips "Do you want to use the recommended plugins (Default: ${PERSI_ZSH_RECOMMENDED_PLUGINS})? [Y/n] "
-  read -r opt
-  case $opt in
-  Y*|y*|"") ;;
-  N*|n*) fmt_notice "use the recommended plugins skipped."; return ;;
-  *) fmt_notice "Invalid choice. use the recommended plugins skipped."; return ;;
-  esac
+  # 让主题生效
+  omz theme set persiliao
+  omz theme use persiliao
 
-  PERSI_ZSH_PLUGINS=$(grep "^plugins=" "${HOME}/.zshrc")
-  for plugin in "${PERSI_ZSH_RECOMMENDED_PLUGINS[@]}"; do
-    if ! echo "${PERSI_ZSH_PLUGINS}" | grep -b -o -c "${plugin}" > /dev/null; then
-      if check_sed_is_gnu; then
-        sed -i "s/^plugins=(/plugins=(${plugin} /" ~/.zshrc
-      else
-        sed -i "" "s/^plugins=(/plugins=(${plugin} /" ~/.zshrc
-      fi
-    fi
-  done
+  fmt_information "🍺 persiliao.zsh-theme installed successfully."
 
-  fmt_information "🍺 Plugins installed successfully."
-  fmt_information "Current activate plugins:"
-  fmt_information "$(grep "^plugins=" "${HOME}/.zshrc")"
+  # 提醒用户重新加载 .zshrc
+  fmt_information "Please run 'omz reload' to activate the theme."
 }
 
 main() {
   setup_color
   check_ohmyzsh
-  setup_install_persi_zsh_theme
-  setup_install_recommended_plugin
+  setup_theme
 }
 
-main "${@}"
+main

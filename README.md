@@ -1,11 +1,10 @@
-# Persi Zsh Theme
+# PersiLiao Zsh Theme
 
 [README](/README.md "README") | [中文文档](/README_zh.md "中文文档")
 
 ## Features
   * Command prompt supports git status 
   * `ls` output highlight color display
-  * Enable some recommended plug-ins[Option]: wd git gitignore git-flow git-flow-avh docker docker-compose npm node golang wp-cli composer yarn systemd systemadmin mvn nvm pip redis-cli supervisor gradle
 
 ## Require
 

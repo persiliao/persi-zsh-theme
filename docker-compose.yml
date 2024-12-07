@@ -1,12 +1,8 @@
-version: "3"
-
 services:
   ohmyzsh:
     image: ohmyzsh/zsh:latest
-    container_name: ohmyzsh
+    container_name: persiliao-zsh-theme
     tty: true
     volumes:
-    - .:/root/persi-zsh-theme
-    - /etc/timezone:/etc/timezone:ro
-    - /etc/localtime:/etc/localtime:ro
+    - .:/persiliao-zsh-theme
     command: /usr/bin/zsh
