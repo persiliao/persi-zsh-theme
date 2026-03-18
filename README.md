@@ -1,35 +1,38 @@
-# Persi Zsh Theme
+# PersiLiao Zsh Theme
 
-[README](/README.md "README") | [中文文档](/README_zh.md "中文文档")
+A beautiful and functional Zsh theme designed for the https://ohmyz.sh/ framework. It provides a clean interface with enhanced visual feedback for Git status and directory navigation.
 
-## Features
-  * Command prompt supports git status 
-  * `ls` output highlight color display
-  * Enable some recommended plug-ins[Option]: wd git gitignore git-flow git-flow-avh docker docker-compose npm node golang wp-cli composer yarn systemd systemadmin mvn nvm pip redis-cli supervisor gradle
+## ✨ Features
 
-## Require
+- **Git Status Integration**: Command prompt dynamically displays Git branch, status (staged, modified, untracked), and other relevant information.
+- **Enhanced `ls` Output**: File and directory listings are highlighted with color for better readability.
+- **Clean Prompt Design**: Minimalist design that focuses on essential information without clutter.
 
-- zsh
-- [oh-my-zsh](https://github.com/ohmyzsh/ohmyzsh "oh-my-zsh")
+## 🚀 Installation
 
-## Installation
+### Prerequisites
 
-```sh
-$ git clone --depth=1 https://github.com/persiliao/persi-zsh-theme
-$ cd persi-zsh-theme
-$ ./install.sh
-$ omz reload
-```
+- **Zsh**: Ensure Zsh is installed on your system.
+- **Oh My Zsh**: This theme is designed to work with the Oh My Zsh framework.
 
-## Preview
+### Steps
 
-![Preview](screenshot.png)
+1. **Clone the Repository**:
+   ```bash
+   git clone --depth=1 https://github.com/persiliao/persi-zsh-theme
+   cd persi-zsh-theme
+   ```
 
-## License
+2. **Run the Installer**:
+   ```bash
+   ./install.sh
+   ```
 
-**MIT License**
+3. **Reload Zsh Configuration**:
+   ```bash
+   omz reload
+   ```
 
-## JetBrains Support
+## 📄 License
 
-**The project has always been developed in the Idea integrated development environment under JetBrains, based on the
-free JetBrains Open Source license(s) genuine free license, I would like to express my gratitude here**
+This project is licensed under the **MIT License**. See the LICENSE file for details.
