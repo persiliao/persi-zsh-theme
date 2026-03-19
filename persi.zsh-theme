@@ -50,12 +50,39 @@ __persiliao_build_git_info() {
     fi
 }
 
+local __persiliao_last_exit_status=0
+
+__persiliao_precmd() {
+    __persiliao_last_exit_status=$?
+}
+
+add-zsh-hook precmd __persiliao_precmd
+
 __persiliao_build_prompt_char() {
-    if [[ "$USER" == "root" ]]; then
-        echo "%F{red}#%f"
+    local color
+    local symbol
+
+    if [[ $__persiliao_last_exit_status -eq 0 ]]; then
+        # Previous command succeeded
+        if [[ "$USER" == "root" ]]; then
+            color="cyan"
+            symbol="#"
+        else
+            color="cyan"
+            symbol="$"
+        fi
     else
-        echo "%F{cyan}$%f"
+        # Previous command failed (including command not found)
+        if [[ "$USER" == "root" ]]; then
+            color="red"
+            symbol="#"
+        else
+            color="red"
+            symbol="$"
+        fi
     fi
+
+    echo "%F{$color}$symbol%f"
 }
 
 # 3. Set up prompt
