@@ -16,7 +16,13 @@ __persiliao_build_user_host() {
     local user_color="%F{magenta}"
     [[ "$USER" == "root" ]] && user_color="%F{red}"
 
-    echo "%B${user_color}%n%f%F{blue}@%f%F{magenta}%m%f%b "
+    local full_name=$(id -F 2>/dev/null || whoami)
+
+    if [[ "$OSTYPE" == darwin* ]]; then
+        echo "%B${user_color}${full_name}%f%b "
+    else
+        echo "%B${user_color}${full_name}%f%F{blue}@%f%F{magenta}%m%f%b "
+    fi
 }
 
 __persiliao_build_pwd() {
