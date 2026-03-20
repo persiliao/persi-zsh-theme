@@ -6,10 +6,20 @@ autoload -Uz vcs_info
 zstyle ':vcs_info:*' enable git
 zstyle ':vcs_info:*' check-for-changes true
 zstyle ':vcs_info:*' unstagedstr ' 💥'
-zstyle ':vcs_info:*' stagedstr ' ✨'
+zstyle ':vcs_info:*' stagedstr ' 💥'
 zstyle ':vcs_info:*' actionformats '(%b|%a%u%c)'
 zstyle ':vcs_info:*' formats '(%b%u%c)'
-zstyle ':vcs_info:*' nvcsformats "" ""
+zstyle ':vcs_info:*' nvcsformats ''
+
+zstyle ':vcs_info:git*' get-revision true
+zstyle ':vcs_info:git*' check-for-changes true
+zstyle ':vcs_info:git*+set-message:*' hooks git-untracked
+
++vi-git-untracked() {
+    if [[ $(git status --porcelain 2>/dev/null | grep '^??' | wc -l) -gt 0 ]]; then
+        hook_com[unstaged]=' ✨'
+    fi
+}
 
 # 2. Define prompt building functions
 __persiliao_build_user_host() {
