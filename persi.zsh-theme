@@ -2,22 +2,41 @@
 # Optimized ZSH Theme Configuration - Full Path Version
 
 # 1. Enable vcs_info
+# Load vcs_info module
 autoload -Uz vcs_info
+
+# Enable version control systems
 zstyle ':vcs_info:*' enable git
+
+# Basic configuration: detect changes
 zstyle ':vcs_info:*' check-for-changes true
-zstyle ':vcs_info:*' unstagedstr ' 💥'
-zstyle ':vcs_info:*' stagedstr ' 💥'
-zstyle ':vcs_info:*' actionformats '(%b|%a%u%c)'
-zstyle ':vcs_info:*' formats '(%b%u%c)'
+zstyle ':vcs_info:*' get-revision true
+
+# Define state display characters
+# Set both to empty initially, hook will control display
+zstyle ':vcs_info:*' unstagedstr ''
+zstyle ':vcs_info:*' stagedstr ''
+
+# Format configuration
+# Using only unstaged position (%u) for the emoji
+zstyle ':vcs_info:*' formats '%b%u'        # Show only branch + unstaged (emoji)
+zstyle ':vcs_info:*' actionformats '%b|%a%u'  # Action: branch|action + unstaged
 zstyle ':vcs_info:*' nvcsformats ''
 
-zstyle ':vcs_info:git*' get-revision true
-zstyle ':vcs_info:git*' check-for-changes true
-zstyle ':vcs_info:git*+set-message:*' hooks git-untracked
+# Git-specific hook for any uncommitted changes
+zstyle ':vcs_info:git*+set-message:*' hooks git-any-uncommitted
 
-+vi-git-untracked() {
-    if [[ $(git status --porcelain 2>/dev/null | grep '^??' | wc -l) -gt 0 ]]; then
-        hook_com[unstaged]=' ✨'
+# Hook: Check for ANY uncommitted changes
++vi-git-any-uncommitted() {
+    # Clear both states initially
+    hook_com[unstaged]=''
+    hook_com[staged]=''
+
+    # Check if there are any uncommitted changes
+    # git status --porcelain returns output for any changes
+    if [[ -n $(git status --porcelain 2>/dev/null) ]]; then
+        # Any uncommitted change exists: show emoji in unstaged position
+        hook_com[unstaged]=' 💥'
     fi
 }
 
