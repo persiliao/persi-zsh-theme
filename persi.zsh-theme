@@ -60,15 +60,36 @@ __persiliao_build_user_host() {
 }
 
 __persiliao_build_pwd() {
-    # Current working directory, home directory replaced with 🏡
-    local pwd_display
-    pwd_display=${PWD/#$HOME/🏡}
-    if [[ "$pwd_display" == "🏡" ]]; then
-        echo "%B%F{green}🏡%f%b"
-    else
-        # Show only the last directory level
-        echo "%B%F{green}📂 ${pwd_display:t}%f%b"
+  # Current working directory, home directory replaced with 🏡
+  local pwd_display levels_to_show
+
+  pwd_display=${PWD/#$HOME/🏡}
+
+  if [[ "$pwd_display" == "🏡" ]]; then
+    echo "%B%F{green}🏡%f%b"
+  else
+    levels_to_show=${PROMPT_DIR_DISPLAY_LEVELS:-1}
+
+    if [[ ! "$levels_to_show" =~ ^[1-9][0-9]*$ ]]; then
+      levels_to_show=1
     fi
+
+    if [[ $levels_to_show -eq 1 ]]; then
+      echo "%B%F{green}📂 ${pwd_display:t}%f%b"
+    else
+      local path_parts=(${(s:/:)pwd_display})
+      local parts_count=${#path_parts}
+
+      if [[ $parts_count -le $levels_to_show ]]; then
+        echo "%B%F{green}📂 ${pwd_display}%f%b"
+      else
+        # 显示最后N级
+        local start_index=$((parts_count - levels_to_show + 1))
+        local display_path=${(j:/:)path_parts[$start_index,$parts_count]}
+        echo "%B%F{green}📂 ${display_path}%f%b"
+      fi
+    fi
+  fi
 }
 
 __persiliao_build_permission_indicator() {
